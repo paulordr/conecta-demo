@@ -32,7 +32,6 @@
   if(d.lgpd==='sim'){
    if(!d.purpose)errors.push('Hipótese de tratamento');
    if(d.purpose==='Outra'&&!d.hypothesisOther.trim())errors.push('Especifique outra hipótese');
-   if(!d.security)errors.push('Medidas de segurança');
   }
   if(d.dirTi&&d.dirTi===d.respTech)errors.push('Dirigente de TI e Responsável Técnico devem ser pessoas diferentes');
   if(!d.accept)errors.push('Marque o aceite da declaração');
