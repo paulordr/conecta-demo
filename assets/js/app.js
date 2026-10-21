@@ -92,13 +92,23 @@
  function bindRequestFields(){
   const access=$('#access');
   access?.addEventListener('change',()=>{const d=RequestForm.read();const host=$('#access-fields');host.innerHTML=['API','Arquivo'].includes(d.access)?'<div class="form-grid">'+field('volume','Volumetria Anual solicitada',d.volume,'Informe a volumetria anual','text',true)+textarea('technical','Observação Técnica',d.technical,'Informações técnicas adicionais')+'</div>':'<div class="notice">Selecione API ou Arquivo para informar a volumetria anual e a observação técnica.</div>';});
-  const renderLgpd=()=>{const host=$('#lgpd-fields');if(!host)return;const lgpd=document.querySelector('input[name="lgpd"]:checked')?.value||'';if(lgpd!=='sim'){host.innerHTML='<div class="notice">Se os dados não contêm dados pessoais, os campos complementares de tratamento não são exigidos.</div>';return}
-    const d=RequestForm.read();const purposeOptions=['Execução de política pública','Prestação de serviços públicos','Cumprimento de obrigação legal ou regulatória pelo controlador','Outra'];
-    host.innerHTML='<div class="field"><label for="purpose">Hipótese de tratamento <span class="required">*</span></label><select id="purpose"><option value="">Selecione</option>'+purposeOptions.map(v=>'<option '+(v===(d.purpose==='Outro'?'Outra':d.purpose)?'selected':'')+'>'+v+'</option>').join('')+'</select></div>'+(d.purpose==='Outra'||d.purpose==='Outro'?field('hyp-other-text','Especifique outra hipótese',d.hypothesisOther,'Descreva a hipótese','text',true):'')+textarea('security','Medidas de segurança',d.security,'Descreva controles e salvaguardas',true);
-    $('#purpose')?.addEventListener('change',()=>{const chosen=$('#purpose').value;const oldOther=$('#hyp-other-text')?.value||'';const security=$('#security')?.value||'';host.innerHTML='<div class="field"><label for="purpose">Hipótese de tratamento <span class="required">*</span></label><select id="purpose"><option value="">Selecione</option>'+purposeOptions.map(v=>'<option '+(v===chosen?'selected':'')+'>'+v+'</option>').join('')+'</select></div>'+(chosen==='Outra'?field('hyp-other-text','Especifique outra hipótese',oldOther,'Descreva a hipótese','text',true):'')+textarea('security','Medidas de segurança',security,'Descreva controles e salvaguardas',true);bindPurposeChange()});
-    const bindPurposeChange=()=>$('#purpose')?.addEventListener('change',()=>{const chosen=$('#purpose').value;const oldOther=$('#hyp-other-text')?.value||'';const security=$('#security')?.value||'';host.innerHTML='<div class="field"><label for="purpose">Hipótese de tratamento <span class="required">*</span></label><select id="purpose"><option value="">Selecione</option>'+purposeOptions.map(v=>'<option '+(v===chosen?'selected':'')+'>'+v+'</option>').join('')+'</select></div>'+(chosen==='Outra'?field('hyp-other-text','Especifique outra hipótese',oldOther,'Descreva a hipótese','text',true):'')+textarea('security','Medidas de segurança',security,'Descreva controles e salvaguardas',true);bindPurposeChange()});
+  const renderLgpd=()=>{
+    const host=$('#lgpd-fields');if(!host)return;
+    const lgpd=document.querySelector('input[name="lgpd"]:checked')?.value||'';
+    if(lgpd!=='sim'){host.innerHTML='<div class="notice">Se os dados não contêm dados pessoais, os campos complementares de tratamento não são exigidos.</div>';return}
+    const d=RequestForm.read();
+    const choices=['Execução de política pública','Prestação de serviços públicos','Cumprimento de obrigação legal ou regulatória pelo controlador','Outra'];
+    const purpose=d.purpose==='Outro'?'Outra':d.purpose;
+    const draw=selected=>{
+      const currentOther=$('#hyp-other-text')?.value||d.hypothesisOther||'';
+      const security=$('#security')?.value||d.security||'';
+      host.innerHTML='<div class="field"><label for="purpose">Hipótese de tratamento <span class="required">*</span></label><select id="purpose"><option value="">Selecione</option>'+choices.map(v=>'<option value="'+esc(v)+'" '+(v===selected?'selected':'')+'>'+esc(v)+'</option>').join('')+'</select></div>'+(selected==='Outra'?field('hyp-other-text','Especifique outra hipótese',currentOther,'Descreva a hipótese','text',true):'')+textarea('security','Medidas de segurança',security,'Descreva controles e salvaguardas',true);
+      $('#purpose')?.addEventListener('change',e=>draw(e.target.value));
+    };
+    draw(purpose);
   };
-  $('input[name="lgpd"]').forEach(el=>el.addEventListener('change',renderLgpd));renderLgpd();
+  $$('input[name="lgpd"]').forEach(el=>el.addEventListener('change',renderLgpd));
+  renderLgpd();
   ['dirTi','respTech'].forEach(id=>$('#'+id)?.addEventListener('change',updateSignerSummaries));updateSignerSummaries();
  }
  function updateSignerSummaries(){const host=$('#signer-summaries');if(!host)return;host.innerHTML=['dirTi','respTech'].map(id=>{const u=data.users.find(x=>x.name===($('#'+id)?.value||''));return '<div class="user-summary"><strong>'+esc(id==='dirTi'?'Dirigente de TI':'Responsável Técnico')+'</strong>'+(u?esc(u.email)+'<br>CPF: '+esc(u.cpf||'Não informado')+'<br>Perfis: '+esc((u.profiles||[]).join(', ')):'Selecione um usuário ativo.')+'</div>'}).join('')}
