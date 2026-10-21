@@ -24,3 +24,13 @@
 .term-signatures{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;text-align:center;margin:44px 0 20px;font-size:11px}
 .term-date{font-size:10px;color:var(--muted);margin-top:24px}
 @media(max-width:760px){.request-row-actions{min-width:260px}.icon-action{font-size:10px;padding:6px}.term-signatures{grid-template-columns:1fr;gap:30px}}
+
+/* Botões de ação somente com ícones e dica ao passar o mouse */
+.request-row-actions{display:flex;align-items:center;justify-content:flex-start;gap:10px;flex-wrap:nowrap;min-width:110px}
+.icon-action{width:30px;height:32px;display:inline-flex;align-items:center;justify-content:center;padding:4px;border:0;border-radius:6px;background:transparent;color:#64748b;cursor:pointer;transition:background .15s,color .15s}
+.icon-action svg{display:block;width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.icon-action:hover{background:#edf4ff;color:#174ea6}
+.icon-action:focus-visible{outline:2px solid #93b8fa;outline-offset:2px}
+.icon-action.approval-icon{color:#0b9b4b}
+.icon-action.approval-icon:hover{background:#e7f7ee;color:#087a3a}
+@media(max-width:760px){.request-row-actions{min-width:100px;gap:6px}.icon-action{width:29px;height:31px}}
