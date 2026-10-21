@@ -3,7 +3,7 @@
  const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>Array.from(r.querySelectorAll(s));
  const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
  const clone=ConectaData.clone;
- let data=ConectaData.load(),route='dashboard',search='',selectedDataset='',editingId=null,requestDraft={};
+ let data=ConectaData.load(),route='dashboard',search='',selectedDataset='',editingId=null,requestDraft={},currentProfile='solicitante';
  let requestFiltersOpen=false,requestFilters={status:'',cedente:'',solicitante:'',tipo:'',esfera:'',from:'',to:''};
  const titles={dashboard:'Dashboard',requests:'Solicitações',datasets:'Lista de dados',orgs:'Órgãos e entidades',reports:'Relatórios',users:'Usuários e perfis'};
  const today=()=>new Date().toISOString().slice(0,10);
@@ -13,7 +13,8 @@
  function persist(){if(!ConectaData.save(data))toast('Não foi possível salvar no navegador. Exporte um backup e verifique o espaço disponível.','error')}
  function id(prefix,list){return prefix+'-'+String((list||[]).length+1).padStart(3,'0')}
  function toast(message,type=''){const root=$('#toast-root'),el=document.createElement('div');el.className='toast '+type;el.textContent=message;root.appendChild(el);setTimeout(()=>el.remove(),3600)}
- function badge(s){const map={'Aprovada':'green','Concluída':'green','Ativo':'green','Em análise':'amber','Enviada':'blue','Pendente de assinaturas':'amber','Aguardando aprovação':'amber','Aguardando avaliação':'amber','Negada':'red','Inativo':'gray','Rejeitada':'red'};return '<span class="badge '+(map[s]||'gray')+'">'+esc(s||'Não informado')+'</span>'}
+ function statusLabel(s){const aliases={'Rascunho':'Em rascunho','Pendente de assinaturas':'Aguardando assinatura','Aguardando aprovação':'Em análise pelo Gestor da plataforma','Em análise':'Em análise pelo Cedente dos dados','Aprovada':'Deferido','Negada':'Rejeitado pelo Cedente dos dados','Rejeitada':'Rejeitado pelo Gestor da plataforma','Concluída':'Deferido'};return aliases[s]||s||'Não informado'}
+ function badge(s){s=statusLabel(s);const map={'Aprovada':'green','Concluída':'green','Ativo':'green','Em análise':'amber','Enviada':'blue','Pendente de assinaturas':'amber','Aguardando aprovação':'amber','Aguardando avaliação':'amber','Negada':'red','Inativo':'gray','Rejeitada':'red'};return '<span class="badge '+(map[s]||'gray')+'">'+esc(s||'Não informado')+'</span>'}
  function pageHead(title,desc,actions=''){return '<div class="page-head"><div><h1>'+title+'</h1><p>'+desc+'</p></div><div class="head-actions">'+actions+'</div></div>'}
  function btn(label,id,kind='primary',attrs=''){return '<button class="btn btn-'+kind+'" id="'+id+'" '+attrs+'>'+label+'</button>'}
  function metric(label,value,note,icon){return '<article class="metric-card"><div class="metric-top"><span>'+label+'</span><span class="metric-icon">'+icon+'</span></div><div class="metric-value">'+value+'</div><div class="metric-note">'+note+'</div></article>'}
@@ -34,12 +35,12 @@
   const reqs=data.requests;
   const unique=key=>[...new Set(reqs.map(r=>r[key]).filter(Boolean))].sort((a,b)=>String(a).localeCompare(String(b),'pt-BR'));
   const options=(items,label,selected)=>'<option value="">'+label+'</option>'+items.map(v=>'<option value="'+esc(v)+'" '+(selected===v?'selected':'')+'>'+esc(v)+'</option>').join('');
-  const statuses=['Em análise','Aprovada','Negada','Concluída','Enviada','Aguardando aprovação','Aguardando avaliação'];
+  const statuses=['Em rascunho','Aguardando assinatura','Em análise pelo Cedente dos dados','Rejeitado pelo Cedente dos dados','Em análise pelo Gestor da plataforma','Rejeitado pelo Gestor da plataforma','Deferido'];
   const spheres=[...new Set(data.orgs.map(o=>o.kind||o.esfera).filter(Boolean))].sort();
   const matches=reqs.filter(r=>{
     const text=[r.id,protocolNumber(r.id),r.dataset,r.cedente,r.solicitante,r.volume,r.type||r.tipo].join(' ').toLowerCase();
     if(q&&!text.includes(q))return false;
-    if(requestFilters.status&&r.status!==requestFilters.status)return false;
+    if(requestFilters.status&&statusLabel(r.status)!==requestFilters.status)return false;
     if(requestFilters.cedente&&r.cedente!==requestFilters.cedente)return false;
     if(requestFilters.solicitante&&r.solicitante!==requestFilters.solicitante)return false;
     if(requestFilters.tipo&&(r.type||r.tipo)!==requestFilters.tipo)return false;
@@ -68,6 +69,7 @@
  function reportsPage(){const approved=data.requests.filter(r=>r.status==='Aprovada').length;return pageHead('Relatórios','Indicadores consolidados e exportação dos dados cadastrados.',btn('⇩ Exportar relatório CSV','export-requests'))+'<div class="metric-grid">'+metric('Total de solicitações',data.requests.length,'Todos os status','↗')+metric('Aprovadas',approved,'Aprovação registrada','✓')+metric('Em análise',data.requests.filter(r=>r.status==='Em análise').length,'Aguardando avaliação','◷')+metric('Listas de dados cadastradas',data.datasets.length,'No catálogo atual','▤')+'</div><section class="panel"><div class="panel-head"><div><h2>Relatório de solicitações</h2><div class="panel-subtitle">Exporte os dados para análise em planilha.</div></div>'+btn('Baixar CSV','export-requests')+'</div><p class="muted">O arquivo inclui protocolo, conjunto, órgão cedente e solicitante, forma de acesso, volumetria, data e status.</p></section>'}
  function usersPage(){const q=search.toLowerCase(),items=data.users.filter(u=>[u.name,u.email,u.org,...(u.profiles||[])].join(' ').toLowerCase().includes(q));return pageHead('Usuários e perfis','Gerencie os usuários disponíveis para seleção como responsáveis.',btn('＋ Novo usuário','new-user'))+'<div class="toolbar"><input class="search-input" id="page-search" placeholder="Buscar usuário, e-mail ou perfil..." value="'+esc(search)+'">'+btn('Gerenciar perfis','manage-profiles','secondary')+'</div><section class="table-panel">'+table(['USUÁRIO','ÓRGÃO','PERFIS','STATUS','AÇÕES'],items.map(u=>'<tr><td><span class="primary-cell">'+esc(u.name)+'</span><span class="secondary-cell">'+esc(u.email)+'</span></td><td>'+esc(u.org||'—')+'</td><td><div class="profile-pills">'+(u.profiles||[]).map(p=>'<span class="profile-pill">'+esc(p)+'</span>').join('')+'</div></td><td>'+badge(u.status)+'</td><td><button class="link-action" data-user="'+esc(u.id)+'">Editar</button></td></tr>'))+'</section><h2 class="section-title">Perfis cadastrados</h2><section class="table-panel">'+table(['PERFIL','DESCRIÇÃO','USUÁRIOS VINCULADOS'],data.profiles.map(p=>'<tr><td class="primary-cell">'+esc(p.name)+'</td><td>'+esc(p.description||'')+'</td><td>'+data.users.filter(u=>(u.profiles||[]).includes(p.name)).length+'</td></tr>'))+'</section>'}
  function bindPage(){
+  $('#profile-view')?.addEventListener('change',e=>{currentProfile=e.target.value;render();toast('Visualização: '+profileLabel(currentProfile)+'.')});
   $$('[data-route]').forEach(b=>b.onclick=()=>go(b.dataset.route));$('#new-request')?.addEventListener('click',()=>openRequest());$('#go-requests')?.addEventListener('click',()=>go('requests'));$('#export-requests')?.addEventListener('click',exportRequests);$('#new-dataset')?.addEventListener('click',()=>openDataset());$('#new-org')?.addEventListener('click',()=>openOrg());$('#new-user')?.addEventListener('click',()=>openUser());$('#manage-profiles')?.addEventListener('click',manageProfiles);
   $('#page-search')?.addEventListener('input',e=>{search=e.target.value;const pos=e.target.selectionStart;render();const next=$('#page-search');if(next){next.focus();next.setSelectionRange(pos,pos)}});
   $('#toggle-request-filters')?.addEventListener('click',()=>{requestFiltersOpen=!requestFiltersOpen;render()});
@@ -106,12 +108,13 @@
   $('#resend-signature-code')?.addEventListener('click',()=>toast('A tela é demonstrativa; nenhum código real foi enviado.','error'));
   $('#authorize-signature')?.addEventListener('click',()=>{if(!$('#signature-code')?.value.trim()){toast('Informe um código de demonstração para continuar.','error');return}r.acceptSigned=true;r.acceptSignedAt=today();r.signatures=r.signatures||{dirTi:false,respTech:false};r.signatures.requester=true;r.history=r.history||[];r.history.push({status:'Declaração do solicitante assinada (simulação)',date:today(),note:'Confirmação registrada no protótipo. Não equivale a assinatura digital oficial gov.br.'});persist();closeModal();viewRequest(r.id);toast('Confirmação registrada em modo de demonstração.','success')});
  }
+ function profileLabel(p){return ({solicitante:'Solicitante de dados',cedente:'Cedente de dados',gestor:'Gestor da Plataforma'})[p]||'Solicitante de dados'}
  function viewRequest(id){
   const r=data.requests.find(x=>x.id===id);if(!r)return;
   const val=v=>v===undefined||v===null||v===''?'Não informado':v;
   const item=(label,value)=>'<div class="summary-box"><small>'+esc(label)+'</small><strong>'+esc(val(value))+'</strong></div>';
   const section=(title,rows)=>'<section class="request-detail-section"><h3>'+esc(title)+'</h3><div class="request-summary">'+rows.map(([a,b])=>item(a,b)).join('')+'</div></section>';
-  const statusBadge='<span class="badge '+(r.status==='Aprovada'?'green':(['Em análise','Pendente de assinaturas','Aguardando aprovação'].includes(r.status)?'amber':r.status==='Negada'?'red':'blue'))+'">'+esc(r.status)+'</span>';const signatureNotice=r.status==='Pendente de assinaturas'?'<div class="notice"><strong>Assinaturas pendentes</strong><br>Esta solicitação ainda não pode ser encaminhada ao órgão cedente. Falta a assinatura do Dirigente de TI ('+esc(r.dirTi||'não definido')+') e do Responsável Técnico ('+esc(r.respTech||'não definido')+').</div>':'';
+  const shownStatus=statusLabel(r.status);const statusBadge='<span class="badge '+(shownStatus==='Deferido'?'green':(shownStatus.includes('análise')||shownStatus.includes('assinatura')?'amber':shownStatus.includes('Rejeitado')?'red':'blue'))+'">'+esc(shownStatus)+'</span>';const signatureNotice=r.status==='Pendente de assinaturas'?'<div class="notice"><strong>Assinaturas pendentes</strong><br>Esta solicitação ainda não pode ser encaminhada ao órgão cedente. Falta a assinatura do Dirigente de TI ('+esc(r.dirTi||'não definido')+') e do Responsável Técnico ('+esc(r.respTech||'não definido')+').</div>':'';
   const statusItem='<div class="summary-box"><small>Status</small><strong>'+statusBadge+'</strong></div>';
   const basics=[['Lista de dados',r.dataset],['Órgão cedente',r.cedente],['Órgão solicitante',r.solicitante],['Tipo da solicitação',r.type||r.tipo],['Volumetria solicitada',r.volume],['Esfera administrativa',r.esfera||r.sphere],['Data',r.createdAt||r.date]];
   const benefits=[['Benefícios esperados',r.benefits],['Serviços impactados',r.services],['Público beneficiário',r.population],['Políticas públicas relacionadas',Array.isArray(r.policies)?r.policies.join(', '):r.policies],['Descrição da política pública impactada',r.policyOther]];
