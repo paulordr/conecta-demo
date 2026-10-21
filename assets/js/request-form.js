@@ -8,7 +8,6 @@
  function render(data,ctx){
   const ds=data.datasets.find(x=>x.id===ctx.datasetId)||data.missingDatasets.find(x=>x.id===ctx.datasetId)||null;
   const users=data.users.filter(u=>u.status==='Ativo');
-  const userOpts=(id,val)=>'<div class="field"><label for="'+id+'">'+id==='dirTi'?'Dirigente de TI':'Responsável Técnico'+'</label></div>';
   const chosen=ctx.request||{};
   const hypotheses=chosen.hypotheses||[];
   return '<div class="notice">Preencha as seções abaixo. Cada seção pode ser recolhida; os campos preenchidos permanecem ao navegar entre elas.</div>'+
