@@ -137,18 +137,18 @@
   const signatureStatus=(r.accept||r.signedAt||r.signatures)?'<section class="request-detail-section"><h3>Situação das assinaturas</h3><div class="request-summary">'+[['Dirigente de TI',r.signatures?.dirTi?'Assinado':'Pendente'],['Responsável Técnico',r.signatures?.respTech?'Assinado':'Pendente']].map(([label,status])=>'<div class="summary-box"><small>'+esc(label)+'</small><strong><span class="badge '+(status==='Assinado'?'green':'amber')+'">'+status+'</span></strong></div>').join('')+'</div></section>':'';
   const history=(r.history||[]).map(h=>'<div class="history-entry"><span class="history-dot"></span><div><strong>'+esc(h.status||'Atualização')+'</strong><small>'+esc(h.date||'')+'</small><p>'+esc(h.note||'Atualização de status')+'</p></div></div>').join('')||'<p class="muted">Nenhum andamento registrado.</p>';
   const comments=Array.isArray(r.comments)?r.comments:[];
-  const commentList=comments.length?comments.map(c=>'<div class="summary-box"><small>'+esc(c.author||'Usuário')+' · '+esc(c.date||'')+'</small><strong>'+esc(c.text||'')+'</strong></div>').join(''):'<p class="muted" id="no-comments">Nenhum comentário adicionado ainda.</p>';
+  const commentList=comments.length?comments.map(c=>'<div class="summary-box"><small>'+esc(c.author||'Usuário')+' · '+esc(c.date||'')+(c.time?' às '+esc(c.time):'')+'</small><strong>'+esc(c.text||'')+'</strong></div>').join(''):'<p class="muted" id="no-comments">Nenhum comentário adicionado ainda.</p>';
   const body='<div class="request-detail-scroll"><div class="request-detail-heading"><strong>'+esc(protocolNumber(r.id))+'</strong><span>'+esc(r.dataset||'Solicitação')+'</span></div>'+signatureNotice+
     section('Resumo do Pedido',basics)+
     section('Benefícios e Impacto',benefits)+
     section('Detalhes Operacionais',operational)+
     section('Conformidade LGPD',lgpd)+
     section('Assinaturas',signers)+signatureStatus+
-    '<section class="request-detail-section"><h3>Comentários <small>Adicione observações sobre a solicitação</small></h3><div id="request-comments">'+commentList+'</div><div class="request-comment-editor"><textarea id="request-comment-text" rows="3" placeholder="Escreva um comentário sobre esta solicitação..."></textarea><button class="btn btn-primary btn-small" id="add-request-comment">＋ Adicionar comentário</button></div></section>'+
+    '<section class="request-detail-section"><h3>Comentários <small>Adicione observações sobre a solicitação</small></h3><div id="request-comments">'+commentList+'</div><div class="request-comment-editor"><textarea id="request-comment-text" rows="3" placeholder="Escreva um comentário sobre esta solicitação..."></textarea><button class="btn btn-primary btn-small" id="add-request-comment" data-request-id="'+esc(r.id)+'">＋ Adicionar comentário</button></div></section>'+
     '<section class="request-detail-section"><h3>Histórico de Andamentos</h3><div class="request-history">'+history+'</div></section></div>';
   const next=({'Enviada':'Em análise','Em análise':'Aguardando aprovação','Aguardando aprovação':'Aprovada','Aprovada':'Concluída','Negada':'Negada','Concluída':'Concluída'})[r.status]||'Em análise';
   modal('Resumo da solicitação',body,'<button class="btn btn-secondary" data-close>Fechar</button><button class="btn btn-secondary" id="download-request-file" data-request-id="'+esc(r.id)+'">Baixar dados (JSON)</button><button class="btn btn-secondary" id="download-request-csv" data-request-id="'+esc(r.id)+'">Baixar resumo (CSV)</button>'+(r.status!=='Concluída'&&r.status!=='Negada'&&r.status!=='Aprovada'?'<button class="btn btn-primary" id="advance-request">Avançar para '+next+'</button>':''),true);
-  $('#add-request-comment')?.addEventListener('click',()=>{const input=$('#request-comment-text'),textValue=input?.value.trim();if(!textValue){toast('Digite um comentário antes de adicionar.','error');return}r.comments=Array.isArray(r.comments)?r.comments:[];r.comments.push({text:textValue,author:'Usuário atual',date:today()});persist();viewRequest(id);toast('Comentário adicionado.','success')});
+
   $('#advance-request')?.addEventListener('click',()=>{r.status=next;r.history=r.history||[];r.history.push({status:next,date:today(),note:'Status atualizado no protótipo.'});persist();closeModal();render();toast('Status atualizado para '+next+'.','success')})
 }
  function viewTerm(id,type){
@@ -179,6 +179,7 @@
  $('#mobile-menu').addEventListener('click',()=>$('#sidebar').classList.toggle('open'));
  window.addEventListener('hashchange',()=>{const next=location.hash.slice(1);if(titles[next])go(next)});
  document.addEventListener('click',e=>{
+  const addComment=e.target.closest('#add-request-comment');if(addComment){e.preventDefault();const requestId=addComment.dataset.requestId;const req=data.requests.find(x=>x.id===requestId);const input=$('#request-comment-text');const textValue=input?.value.trim();if(!req){toast('Não foi possível localizar a solicitação.','error');return}if(!textValue){toast('Digite um comentário antes de adicionar.','error');return}req.comments=Array.isArray(req.comments)?req.comments:[];req.comments.push({text:textValue,author:'Usuário atual',date:today(),time:new Date().toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'})});persist();viewRequest(requestId);toast('Comentário adicionado à solicitação.','success');return}
   const view=e.target.closest('[data-view]');if(view){e.preventDefault();viewRequest(view.dataset.view);return}
   const term=e.target.closest('[data-term]');if(term){e.preventDefault();viewTerm(term.dataset.id,term.dataset.term);return}
   const jsonBtn=e.target.closest('#download-request-file');if(jsonBtn){const r=data.requests.find(x=>x.id===jsonBtn.dataset.requestId);if(r)download('solicitacao-'+protocolNumber(r.id).replace('/','-')+'.json',JSON.stringify(r,null,2),'application/json;charset=utf-8');return}
