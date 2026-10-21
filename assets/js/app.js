@@ -4,7 +4,7 @@
  const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
  const clone=ConectaData.clone;
  let data=ConectaData.load(),route='dashboard',search='',selectedDataset='',editingId=null,requestDraft={};
- let requestFiltersOpen=true,requestFilters={status:'',cedente:'',solicitante:'',tipo:'',esfera:'',from:'',to:''};
+ let requestFiltersOpen=false,requestFilters={status:'',cedente:'',solicitante:'',tipo:'',esfera:'',from:'',to:''};
  const titles={dashboard:'Dashboard',requests:'Solicitações',datasets:'Conjuntos de dados',orgs:'Órgãos e entidades',reports:'Relatórios',users:'Usuários e perfis'};
  const today=()=>new Date().toISOString().slice(0,10);
  function protocolNumber(value){const raw=String(value||'');const m=raw.match(/^(?:SOL-)?(\d{4})-(\d{1,6})$/)||raw.match(/^(\d{1,6})\/(\d{4})$/);if(!m)return raw;let seq,year;if(raw.includes('/')){seq=m[1];year=m[2]}else{year=m[1];seq=m[2]}return String(Number(seq)).padStart(6,'0')+'/'+year}
