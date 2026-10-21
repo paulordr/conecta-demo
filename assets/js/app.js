@@ -72,8 +72,8 @@
  function exportBackup(){download('backup-conectahub-'+today()+'.json',JSON.stringify({version:2,exportedAt:new Date().toISOString(),data},null,2),'application/json');toast('Backup exportado.','success')}
  function importBackup(file){const reader=new FileReader();reader.onload=()=>{try{const parsed=JSON.parse(reader.result),incoming=parsed.data||parsed;if(!incoming.datasets||!incoming.requests||!incoming.users)throw new Error('Estrutura incompleta');if(!confirm('Importar o backup substituirá os dados deste navegador. Deseja continuar?'))return;data=incoming;persist();render();toast('Backup importado.','success')}catch(e){toast('Arquivo inválido ou incompatível.','error')}};reader.readAsText(file)}
  $('#mobile-menu').addEventListener('click',()=>$('#sidebar').classList.toggle('open'));
- $('#export-backup').addEventListener('click',exportBackup);$('#import-backup').addEventListener('click',()=>importButton.click());
  const importButton=document.createElement('input');importButton.type='file';importButton.accept='application/json';importButton.hidden=true;importButton.addEventListener('change',()=>{if(importButton.files?.[0])importBackup(importButton.files[0])});document.body.append(importButton);
+ $('#export-backup').addEventListener('click',exportBackup);$('#import-backup').addEventListener('click',()=>importButton.click());
  // O seletor de backup também fica acessível no rodapé via clique secundário.
  $('#export-backup').addEventListener('contextmenu',e=>{e.preventDefault();importButton.click()});
  window.addEventListener('hashchange',()=>{const next=location.hash.slice(1);if(titles[next])go(next)});
