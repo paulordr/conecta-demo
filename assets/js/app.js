@@ -101,8 +101,8 @@
     const purpose=d.purpose==='Outro'?'Outra':d.purpose;
     const draw=selected=>{
       const currentOther=$('#hyp-other-text')?.value||d.hypothesisOther||'';
-      const security=$('#security')?.value||d.security||'';const legalBasis=$('#legal-basis')?.value||d.legalBasis||'';
-      host.innerHTML='<div class="field"><label for="purpose">Hipótese de tratamento <span class="required">*</span></label><select id="purpose"><option value="">Selecione</option>'+choices.map(v=>'<option value="'+esc(v)+'" '+(v===selected?'selected':'')+'>'+esc(v)+'</option>').join('')+'</select></div>'+(selected==='Outra'?field('hyp-other-text','Especifique outra hipótese',currentOther,'Descreva a hipótese','text',true):'')+textarea('security','Medidas de segurança',security,'Descreva controles e salvaguardas',true)+textarea('legal-basis','Previsão Legal',d.legalBasis,'Informar normativo ou regulamento que define as competências do órgão ou seu regimento interno; além disso, destaque outras normas ou regulamentos relevantes que respaldem a finalidade do tratamento de dados pessoais realizado.',true);
+      const legalBasis=$('#legal-basis')?.value||d.legalBasis||'';
+      host.innerHTML='<div class="field"><label for="purpose">Hipótese de tratamento <span class="required">*</span></label><select id="purpose"><option value="">Selecione</option>'+choices.map(v=>'<option value="'+esc(v)+'" '+(v===selected?'selected':'')+'>'+esc(v)+'</option>').join('')+'</select></div>'+(selected==='Outra'?field('hyp-other-text','Especifique outra hipótese',currentOther,'Descreva a hipótese','text',true):'')+textarea('legal-basis','Previsão Legal',d.legalBasis,'Informar normativo ou regulamento que define as competências do órgão ou seu regimento interno; além disso, destaque outras normas ou regulamentos relevantes que respaldem a finalidade do tratamento de dados pessoais realizado.',true);
       $('#purpose')?.addEventListener('change',e=>draw(e.target.value));
     };
     draw(purpose);
