@@ -114,3 +114,5 @@
 .signature-portal .signature-muted{color:#69788d;font-size:14px;line-height:1.6;margin:18px 0}
 .signature-portal .field input{height:48px;border:1px solid #9ba8b7;background:#fffbd0;font-size:14px}
 .signature-portal .notice{font-size:12px;margin-top:12px}
+
+.profile-switcher{display:flex;align-items:center;gap:8px;font-size:12px;white-space:nowrap}.profile-switcher select{max-width:190px;border:1px solid #dbe2ea;border-radius:8px;background:#fff;color:#1f2937;padding:8px;font:inherit}.btn-danger{background:#b42332;color:#fff;border:1px solid #b42332}@media(max-width:900px){.profile-switcher{align-items:flex-start;flex-direction:column;gap:3px}.profile-switcher select{max-width:155px}}
