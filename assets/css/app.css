@@ -2,3 +2,12 @@
 @media(max-width:1100px){.metric-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.content-grid{grid-template-columns:1fr}.page-content{padding:24px 22px}.topbar{padding:0 22px}}
 @media(max-width:760px){.app-shell{grid-template-columns:1fr}.sidebar{position:fixed;z-index:80;left:0;top:0;bottom:0;width:270px;height:100dvh;transform:translateX(-105%);transition:transform .2s;box-shadow:none}.sidebar.open{transform:translateX(0);box-shadow:0 0 0 100vmax #14233d55}.mobile-menu{display:inline-grid;place-items:center;width:36px;height:36px;border:1px solid var(--line);border-radius:8px;background:#fff;color:#344862}.topbar{height:62px;padding:0 14px}.environment{display:none}.page-content{padding:22px 14px}.page-head{flex-direction:column}.page-head h1{font-size:24px}.head-actions{width:100%}.metric-grid{gap:10px}.metric-card{padding:14px}.metric-value{font-size:25px}.table-head{align-items:flex-start;flex-direction:column;padding:15px}.table-actions{width:100%}.table-actions .search-input{flex:1;width:100%}.footer{padding:14px;flex-direction:column}.form-grid{grid-template-columns:1fr}.modal-backdrop{padding:8px}.modal-body{padding:16px}.modal-head,.modal-footer{padding:14px 16px}.request-summary{grid-template-columns:1fr}.topbar-actions{gap:8px}.breadcrumbs{font-size:11px;gap:6px}}
 @media(max-width:430px){.metric-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.metric-card{padding:12px}.metric-top{font-size:10px}.metric-icon{width:29px;height:29px}.metric-value{font-size:22px}.metric-note{font-size:10px}.page-content{padding-inline:11px}.head-actions .btn{flex:1}.footer{font-size:10px}}
+
+/* Ajustes de compactação dos campos de conformidade/LGPD */
+.radio-choice-group{display:flex;align-items:center;gap:18px;flex-wrap:wrap;padding:9px 12px;border:1px solid var(--line);border-radius:8px;background:#fff;min-height:42px}
+.radio-choice{display:inline-flex;align-items:center;gap:7px;font-size:12px;font-weight:600;color:#394b65;cursor:pointer;white-space:nowrap}
+.radio-choice input[type=radio]{width:15px;height:15px;margin:0;accent-color:var(--blue);flex:0 0 auto}
+.hypothesis-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.hypothesis-list .check-option{min-width:0;min-height:44px;margin:0;padding:10px 11px;align-items:flex-start;line-height:1.4;font-size:11px;overflow-wrap:anywhere}
+.hypothesis-list .check-option input{flex:0 0 auto;width:15px;height:15px;margin:2px 0 0;accent-color:var(--blue)}
+@media(max-width:560px){.hypothesis-list{grid-template-columns:1fr}.radio-choice-group{gap:14px}}
