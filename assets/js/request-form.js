@@ -22,7 +22,7 @@
   const get=id=>document.getElementById(id);
   const val=id=>get(id)?.value||'';
   const checked=id=>!!get(id)?.checked;
-  return {services:val('services'),benefits:val('benefits'),population:val('population'),policies:val('policies'),access:val('access'),volume:val('volume'),technical:val('technical'),lgpd:document.querySelector('input[name="lgpd"]:checked')?.value||'',purpose:val('purpose'),hypothesisOther:val('hyp-other-text'),security:val('security'),dirTi:val('dirTi'),respTech:val('respTech'),accept:checked('accept')};
+  return {services:val('services'),benefits:val('benefits'),population:val('population'),policies:val('policies'),access:val('access'),volume:val('volume'),technical:val('technical'),lgpd:document.querySelector('input[name="lgpd"]:checked')?.value||'',purpose:val('purpose'),hypothesisOther:val('hyp-other-text'),security:val('security'),legalBasis:val('legal-basis'),dirTi:val('dirTi'),respTech:val('respTech'),accept:checked('accept')};
  }
  function validate(d){
   const errors=[];
