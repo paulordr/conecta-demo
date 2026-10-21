@@ -685,7 +685,7 @@
     "volume": "1.000 a 10.000",
     "date": "28/05/2025",
     "final": "28/05/2025",
-    "status": "Negado",
+    "status": "Negada",
     "datasetId": "",
     "type": "Alteração de Volumetria",
     "access": "API",
@@ -694,7 +694,7 @@
     "lgpd": "nao",
     "history": [
       {
-        "status": "Negado",
+        "status": "Negada",
         "date": "2025-05-28",
         "note": "Registro migrado da versão anterior."
       }
@@ -783,7 +783,7 @@
     "volume": "1.000 a 10.000",
     "date": "24/04/2024",
     "final": "24/05/2024",
-    "status": "Pendente",
+    "status": "Em análise",
     "datasetId": "",
     "type": "Adesão",
     "access": "API",
@@ -792,7 +792,7 @@
     "lgpd": "nao",
     "history": [
       {
-        "status": "Pendente",
+        "status": "Em análise",
         "date": "2024-04-24",
         "note": "Registro migrado da versão anterior."
       }
