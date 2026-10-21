@@ -125,6 +125,7 @@
   const operational=[['Forma de acesso',r.access],['Volumetria',r.volume],['Periodicidade de atualização',r.periodicity],['Formato de entrega',r.deliveryFormat||(r.access==='API'?'API (Web Service)':r.access==='Arquivo'?'Arquivo':'')],['Observações técnicas',r.technical]];
   const lgpd=[['Envolve dados pessoais',r.lgpd==='sim'?'Sim':r.lgpd==='nao'?'Não':r.lgpd],['Hipótese de tratamento',r.purpose],['Especifique outra hipótese',r.hypothesisOther],['Previsão Legal',r.legalBasis],['DPO responsável',r.dpo||r.dpoResponsible]];
   const signers=[['Solicitante',r.requester||r.requesterName],['Cargo / função',r.requesterRole],['E-mail institucional',r.requesterEmail],['Órgão',r.solicitante],['Dirigente de TI',r.dirTi],['Responsável Técnico',r.respTech],['Assinado em',r.signedAt]];
+  const signatureStatus=(r.accept||r.signedAt||r.signatures)?'<section class="request-detail-section"><h3>Situação das assinaturas</h3><div class="request-summary">'+[['Dirigente de TI',r.signatures?.dirTi?'Assinado':'Pendente'],['Responsável Técnico',r.signatures?.respTech?'Assinado':'Pendente']].map(([label,status])=>'<div class="summary-box"><small>'+esc(label)+'</small><strong><span class="badge '+(status==='Assinado'?'green':'amber')+'">'+status+'</span></strong></div>').join('')+'</div></section>':'';
   const history=(r.history||[]).map(h=>'<div class="history-entry"><span class="history-dot"></span><div><strong>'+esc(h.status||'Atualização')+'</strong><small>'+esc(h.date||'')+'</small><p>'+esc(h.note||'Atualização de status')+'</p></div></div>').join('')||'<p class="muted">Nenhum andamento registrado.</p>';
   const comments=Array.isArray(r.comments)?r.comments:[];
   const commentList=comments.length?comments.map(c=>'<div class="summary-box"><small>'+esc(c.author||'Usuário')+' · '+esc(c.date||'')+'</small><strong>'+esc(c.text||'')+'</strong></div>').join(''):'<p class="muted" id="no-comments">Nenhum comentário adicionado ainda.</p>';
@@ -133,7 +134,7 @@
     section('Benefícios e Impacto',benefits)+
     section('Detalhes Operacionais',operational)+
     section('Conformidade LGPD',lgpd)+
-    section('Assinaturas',signers)+
+    section('Assinaturas',signers)+signatureStatus+
     '<section class="request-detail-section"><h3>Comentários <small>Adicione observações sobre a solicitação</small></h3><div id="request-comments">'+commentList+'</div><div class="request-comment-editor"><textarea id="request-comment-text" rows="3" placeholder="Escreva um comentário sobre esta solicitação..."></textarea><button class="btn btn-primary btn-small" id="add-request-comment">＋ Adicionar comentário</button></div></section>'+
     '<section class="request-detail-section"><h3>Histórico de Andamentos</h3><div class="request-history">'+history+'</div></section></div>';
   const next=({'Enviada':'Em análise','Em análise':'Aguardando aprovação','Aguardando aprovação':'Aprovada','Aprovada':'Concluída','Negada':'Negada','Concluída':'Concluída'})[r.status]||'Em análise';
