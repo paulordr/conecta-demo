@@ -102,3 +102,15 @@
 
 /* Ícones dos agrupadores do formulário de solicitação */
 .form-section summary .section-heading{display:inline-flex;align-items:center;gap:10px;min-width:0}.form-section summary .section-icon{display:inline-grid;place-items:center;flex:0 0 34px;width:34px;height:34px;border-radius:10px;background:#eaf2ff;font-size:17px;line-height:1}.form-section summary .section-heading>span:last-child{min-width:0}.form-section summary .section-chevron{flex:0 0 auto;color:#61718a;font-size:16px}.form-section[open] summary .section-chevron{transform:rotate(180deg)}
+
+
+/* Tela demonstrativa do portal de assinatura */
+.signature-portal{color:#172b4d;font-size:15px;line-height:1.45}
+.signature-brand{display:flex;align-items:center;gap:18px;padding:16px 14px;margin-bottom:22px;background:#fff;border-radius:7px;box-shadow:0 2px 6px #10243a18;color:#0758c9}
+.signature-brand>strong{font-size:34px;letter-spacing:-2px;color:#0758c9}.signature-brand>strong span{color:#1475d4}
+.signature-brand b{display:block;font-size:25px;font-weight:500}.signature-brand small{display:block;font-size:14px}
+.signature-portal h2{font-size:25px;font-weight:500;margin:0 0 8px;color:#111827}
+.signature-portal p{margin:8px 0 14px}.signature-portal hr{border:0;border-top:1px solid #d8e0eb;margin:10px 0 30px}
+.signature-portal .signature-muted{color:#69788d;font-size:14px;line-height:1.6;margin:18px 0}
+.signature-portal .field input{height:48px;border:1px solid #9ba8b7;background:#fffbd0;font-size:14px}
+.signature-portal .notice{font-size:12px;margin-top:12px}
