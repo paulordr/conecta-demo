@@ -11,7 +11,7 @@
   const chosen=ctx.request||{};
   const hypotheses=chosen.hypotheses||[];
   return '<div class="notice">Preencha as seções abaixo. Cada seção pode ser recolhida; os campos preenchidos permanecem ao navegar entre elas.</div>'+
-   '<div class="request-summary"><div class="summary-box"><small>ÓRGÃO CEDENTE</small><strong>'+esc(ds?.org||chosen.cedente||'A confirmar')+'</strong></div></div>'+
+   '
    '<form id="request-form" novalidate>'+
    '<details class="form-section" open><summary>01 · Benefícios e políticas públicas <span>⌄</span></summary><div class="form-section-body">'+textarea('services','Serviços públicos impactados',chosen.services,'Descreva os serviços públicos impactados',true)+textarea('benefits','Benefícios esperados',chosen.benefits,'Descreva os benefícios esperados',true)+textarea('population','População beneficiada',chosen.population,'Descreva a população beneficiada')+select('policies','Políticas públicas impactadas',['Transformação digital','Saúde','Educação','Assistência social','Segurança pública','Outra'],chosen.policies,true)+'</div></details>'+
    '<details class="form-section" open><summary>02 · Características operacionais <span>⌄</span></summary><div class="form-section-body">'+select('access','Forma de acesso',['API','Arquivo'],chosen.access,true)+'<div id="access-fields">'+((chosen.access==='API'||chosen.access==='Arquivo')?'<div class="form-grid">'+field('volume','Volumetria Anual solicitada',chosen.volume,'Informe a volumetria anual', 'text',true)+textarea('technical','Observação Técnica',chosen.technical,'Informações técnicas adicionais')+'</div>':'<div class="notice">Selecione API ou Arquivo para informar a volumetria anual e a observação técnica.</div>')+'</div></div></details>'+
