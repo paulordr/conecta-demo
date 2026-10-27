@@ -116,3 +116,7 @@
 .signature-portal .notice{font-size:12px;margin-top:12px}
 
 .profile-switcher{display:flex;align-items:center;gap:8px;font-size:12px;white-space:nowrap}.profile-switcher select{max-width:190px;border:1px solid #dbe2ea;border-radius:8px;background:#fff;color:#1f2937;padding:8px;font:inherit}.btn-danger{background:#b42332;color:#fff;border:1px solid #b42332}@media(max-width:900px){.profile-switcher{align-items:flex-start;flex-direction:column;gap:3px}.profile-switcher select{max-width:155px}}
+
+
+/* Nova solicitação: filtro tecnológico e instrução de seleção do conjunto */
+.request-dataset-intro{padding:14px 15px 2px;margin-bottom:10px;border:1px solid #dce7f5;border-radius:12px;background:#f8fbff}.request-dataset-instruction{margin:0 0 12px;padding:10px 12px;border-left:3px solid var(--blue2);border-radius:0 7px 7px 0;background:#edf4ff;color:#24456f;font-weight:700}.request-dataset-intro .field{margin-bottom:12px}.request-dataset-intro .field:last-child{margin-bottom:8px}#missing-dataset-action{margin-top:7px}#missing-dataset-action .link-action{white-space:normal;text-align:left;line-height:1.5;color:#174ea6;font-weight:700}#missing-dataset-action .link-action:hover{text-decoration:underline}@media(max-width:600px){.request-dataset-intro{padding:12px}.request-dataset-instruction{font-size:13px}}
