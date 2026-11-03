@@ -1076,9 +1076,23 @@
   missingDatasets:[]
  };
  function clone(v){return JSON.parse(JSON.stringify(v))}
+ // Massa demonstrativa para alimentar os indicadores e relatórios.
+ // As datas são relativas ao mês atual para manter os gráficos sempre preenchidos.
+ function demoRequests(){
+  const now=new Date(), rows=[], cedentes=['Ministério da Saúde','Receita Federal','Instituto Nacional do Seguro Social (INSS)','Ministério da Gestão e da Inovação em Serviços Públicos (MGI)','Instituto Brasileiro de Geografia e Estatística'], solicitantes=['Ministério da Educação','Ministério do Desenvolvimento e Assistência Social','Controladoria-Geral da União','Ministério da Justiça e Segurança Pública','Secretaria de Governo Digital'], datasets=['Cadastro de Pessoas Físicas','Consulta de Benefícios Previdenciários','Dados do Cadastro Único','Informações de Saúde Pública','Cadastro Nacional de Endereços'];
+  const states=['Aprovada','Aprovada','Em análise','Negada','Concluída','Aguardando aprovação','Em análise','Aprovada','Em análise','Aprovada','Negada','Concluída'];
+  const offsets=[8,13,5,19,11,7,24,16,9,14,6,21,10,18,4,12,26,8,15,5,17,23,6,12];
+  for(let i=0;i<24;i++){
+   const monthOffset=5-Math.floor(i/4),day=3+(i%4)*6,created=new Date(now.getFullYear(),now.getMonth()-monthOffset,Math.min(day,27)),status=states[i%states.length],done=['Aprovada','Negada','Concluída'].includes(status),end=new Date(created);end.setDate(end.getDate()+offsets[i]);
+   const iso=d=>d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'),br=d=>String(d.getDate()).padStart(2,'0')+'/'+String(d.getMonth()+1).padStart(2,'0')+'/'+d.getFullYear();
+   rows.push({id:'SOL-'+now.getFullYear()+'-'+String(101+i).padStart(3,'0'),dataset:datasets[i%datasets.length],cedente:cedentes[i%cedentes.length],solicitante:solicitantes[(i*2)%solicitantes.length],tipo:['Adesão','Alteração de volumetria','Prorrogação de acesso'][i%3],volume:['1.000 a 10.000','10.000 a 100.000','100.000 a 1 milhão','Acima de 1 milhão'][i%4],date:br(created),createdAt:iso(created),final:done?br(end):'',approvalDate:done&&status!=='Negada'?br(end):'',completedAt:status==='Concluída'?br(end):'',status,datasetId:'',type:['Adesão','Alteração de volumetria','Prorrogação de acesso'][i%3],access:i%4===0?'Arquivo':'API',lgpd:i%3===0?'sim':'nao',dataTreatment:i%3===0?'Compartilhamento para execução de política pública':'Consulta e validação cadastral',history:[{status,date:iso(created),note:'Registro demonstrativo para apresentação dos relatórios.'}]});
+  }
+  return rows;
+ }
+ const demoSeedRequests=demoRequests();
  function load(){
-  try{const saved=localStorage.getItem(KEY);if(saved){const parsed=JSON.parse(saved);return {...clone(seed),...parsed}}}catch(e){console.warn('Não foi possível ler dados locais.',e)}
-  return clone(seed)
+  try{const saved=localStorage.getItem(KEY);if(saved){const parsed=JSON.parse(saved),requests=[...(parsed.requests||[])];demoSeedRequests.forEach(r=>{if(!requests.some(x=>x.id===r.id))requests.push(clone(r))});return {...clone(seed),...parsed,requests}}}catch(e){console.warn('Não foi possível ler dados locais.',e)}
+  const initial=clone(seed);initial.requests.push(...clone(demoSeedRequests));return initial
  }
  window.ConectaData={KEY,seed:clone(seed),load,save(data){try{localStorage.setItem(KEY,JSON.stringify(data));return true}catch(e){console.error(e);return false}},clone};
 })();
