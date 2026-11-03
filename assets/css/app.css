@@ -205,3 +205,14 @@
 .govbr-quick-mark b:nth-child(1),.govbr-quick-mark b:nth-child(4),.govbr-quick-mark b:nth-child(5){color:#1b4f9c}
 .govbr-quick-mark b:nth-child(2),.govbr-quick-mark b:nth-child(6){color:#f0ad00}
 .govbr-quick-mark b:nth-child(3){color:#269b4b}
+
+/* Identidade principal da Plataforma do Conecta no acesso rápido */
+.quick-access-title-group{display:flex;align-items:center;gap:13px;min-width:0}
+.quick-access-title-group .quick-access-mark{width:58px;height:48px;flex:0 0 58px;border-radius:12px}
+.quick-access-heading{justify-content:flex-start}
+.quick-access-mark.govbr-quick-mark{display:flex;align-items:center;justify-content:center;gap:0;padding:0 5px;border:1px solid #dce5ef;background:#fff;color:inherit;font-size:23px;letter-spacing:-1.5px;line-height:1}
+.govbr-quick-mark b{font-weight:900}
+.govbr-quick-mark b:nth-child(1),.govbr-quick-mark b:nth-child(4){color:#2870b8}
+.govbr-quick-mark b:nth-child(2),.govbr-quick-mark b:nth-child(5){color:#e8a817}
+.govbr-quick-mark b:nth-child(3),.govbr-quick-mark b:nth-child(6){color:#25834a}
+@media(max-width:560px){.quick-access-title-group{gap:10px}.quick-access-title-group .quick-access-mark{width:52px;height:42px;flex-basis:52px;font-size:20px}}
