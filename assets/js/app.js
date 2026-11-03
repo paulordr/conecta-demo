@@ -27,7 +27,7 @@
   const bars=Array.from({length:6},(_,i)=>{const d=new Date();d.setMonth(d.getMonth()-(5-i));const label=d.toLocaleDateString('pt-BR',{month:'short'}).replace('.','');const n=data.requests.filter(r=>{const dt=new Date((r.createdAt||today())+'T12:00:00');return dt.getMonth()===d.getMonth()&&dt.getFullYear()===d.getFullYear()}).length;return {label,n}}),max=Math.max(1,...bars.map(x=>x.n));
   const recent=[...data.requests].sort((a,b)=>(b.createdAt||'').localeCompare(a.createdAt||'')).slice(0,5);
   return pageHead('Visão Geral','Visão geral das solicitações e do compartilhamento de dados.',btn('＋ Nova solicitação','new-request') )+
-  '<section class="quick-access-panel"><div class="quick-access-heading"><div><span class="quick-access-eyebrow">PLATAFORMA DO CONECTA</span><h2>Ações rápidas</h2><p>Acesse diretamente os principais módulos da plataforma.</p></div><span class="quick-access-mark govbr-quick-mark" aria-label="gov.br"><b>g</b><b>o</b><b>v</b><b>.</b><b>b</b><b>r</b></span></div><div class="quick-access-grid">'+[
+  '<section class="quick-access-panel"><div class="quick-access-heading"><div class="quick-access-title-group"><span class="quick-access-mark govbr-quick-mark" aria-label="gov.br"><b>g</b><b>o</b><b>v</b><b>.</b><b>b</b><b>r</b></span><div><h2>Ações rápidas</h2><p>Acesse diretamente os principais módulos da Plataforma do Conecta.</p></div></div></div><div class="quick-access-grid">'+[
   ['requests','↗','Solicitações','Acompanhe e gerencie solicitações','blue'],
   ['datasets','▤','Lista de dados','Consulte o catálogo de dados','teal'],
   ['orgs','▥','Órgãos e entidades','Consulte organizações participantes','violet'],
