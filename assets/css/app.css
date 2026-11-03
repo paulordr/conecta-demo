@@ -216,3 +216,14 @@
 .govbr-quick-mark b:nth-child(2),.govbr-quick-mark b:nth-child(5){color:#e8a817}
 .govbr-quick-mark b:nth-child(3),.govbr-quick-mark b:nth-child(6){color:#25834a}
 @media(max-width:560px){.quick-access-title-group{gap:10px}.quick-access-title-group .quick-access-mark{width:52px;height:42px;flex-basis:52px;font-size:20px}}
+
+/* Gráfico de pizza da distribuição por status no dashboard */
+.status-pie-layout{display:flex;align-items:center;justify-content:center;gap:22px;min-height:190px;padding:8px 2px}
+.status-pie{display:grid;place-items:center;flex:0 0 148px;width:148px;height:148px;border-radius:50%;position:relative}
+.status-pie:before{content:"";position:absolute;inset:27px;border-radius:50%;background:#fff}
+.status-pie>div{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;gap:2px}
+.status-pie strong{font-size:23px;line-height:1.1;color:#243247}
+.status-pie small{font-size:10px;color:#7b899c}
+.status-pie-layout .legend-list{flex:1;min-width:0;gap:12px}
+.status-pie-layout .legend-row{grid-template-columns:9px minmax(75px,1fr) auto;gap:7px;font-size:11px}
+@media(max-width:560px){.status-pie-layout{gap:14px}.status-pie{flex-basis:124px;width:124px;height:124px}.status-pie:before{inset:23px}.status-pie-layout .legend-row{font-size:10px}}
