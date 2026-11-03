@@ -168,3 +168,29 @@
 .report-list-panel{padding:8px 10px 0}.report-search{display:flex;align-items:center;gap:8px;height:38px;padding:0 10px;margin:0 0 8px;border:1px solid #dce4ee;border-radius:8px;color:#8190a4}.report-search input{width:100%;height:100%;border:0;outline:0;background:transparent;font:inherit;font-size:11px;color:var(--ink)}
 .report-table{min-width:650px}.report-table th{font-size:9px;color:#718096;font-weight:700;white-space:nowrap}.report-table td{font-size:10px;white-space:nowrap}.report-id{color:#718096;font-family:monospace}.report-title{color:#243247;font-weight:650}.report-type{display:inline-block;padding:4px 8px;border-radius:20px;font-size:9px}.type-operacional{background:#e7efff;color:#2563eb}.type-gerencial{background:#f3e8ff;color:#9333ea}.type-indicadores{background:#fef3c7;color:#a16207}.type-auditoria{background:#dcfce7;color:#15803d}
 @media(max-width:900px){.reports-top-grid{grid-template-columns:1fr}}@media(max-width:600px){.report-panel .panel-head{padding:12px}.report-donut{gap:8px}.report-donut svg{width:100px;flex-basis:100px}.report-legend{gap:6px}.report-average{font-size:10px}.report-list-panel{padding:7px}}
+
+/* Acesso rápido em destaque na página inicial da Plataforma do Conecta */
+.quick-access-panel{position:relative;overflow:hidden;margin:18px 0 20px;padding:19px 20px 20px;border:1px solid #d7e4f5;border-radius:14px;background:linear-gradient(115deg,#f4f8ff 0%,#fff 65%,#f7fbff 100%);box-shadow:0 5px 18px #173b6810}
+.quick-access-heading{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:15px}
+.quick-access-eyebrow{display:inline-block;margin-bottom:5px;color:#2563a8;font-size:9px;font-weight:850;letter-spacing:1.15px}
+.quick-access-heading h2{margin:0;color:#172b4d;font-size:17px;font-weight:800}
+.quick-access-heading p{margin:4px 0 0;color:#6b7b91;font-size:11px}
+.quick-access-mark{display:grid;place-items:center;width:42px;height:42px;border:1px solid #cfe0f7;border-radius:13px;background:#e8f1ff;color:#174ea6;font-size:21px;font-weight:850}
+.quick-access-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.quick-action-card{display:flex;align-items:center;gap:11px;min-width:0;min-height:72px;padding:12px;border:1px solid #e1e8f1;border-radius:10px;background:#fff;text-align:left;color:#26364c;cursor:pointer;transition:transform .15s,border-color .15s,box-shadow .15s}
+.quick-action-card:hover{transform:translateY(-2px);border-color:#b8cce8;box-shadow:0 6px 16px #173b6812}
+.quick-action-card:focus-visible{outline:2px solid #3b82f6;outline-offset:2px}
+.quick-action-icon{display:grid;place-items:center;flex:0 0 38px;width:38px;height:38px;border-radius:10px;background:#edf4ff;color:#245ca7;font-size:20px;font-weight:750}
+.quick-action-copy{display:flex;flex:1;flex-direction:column;gap:4px;min-width:0}
+.quick-action-copy strong{font-size:11px;font-weight:800;color:#243247}
+.quick-action-copy small{font-size:9px;line-height:1.4;color:#7b899c}
+.quick-action-arrow{color:#8a9ab0;font-size:16px}
+.quick-teal .quick-action-icon{background:#e6f7f5;color:#0f8278}
+.quick-violet .quick-action-icon{background:#f1ebff;color:#7651b5}
+.quick-amber .quick-action-icon{background:#fff5df;color:#a56b08}
+.quick-slate .quick-action-icon{background:#edf1f5;color:#52647a}
+.quick-primary{border-color:#c5d9f4;background:#f8fbff}
+.quick-primary .quick-action-icon{background:#174ea6;color:#fff}
+.quick-primary .quick-action-copy strong{color:#174ea6}
+@media(max-width:900px){.quick-access-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:560px){.quick-access-panel{padding:15px 12px}.quick-access-grid{grid-template-columns:1fr;gap:8px}.quick-action-card{min-height:62px}.quick-access-mark{width:36px;height:36px}}
