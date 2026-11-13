@@ -540,3 +540,10 @@
 .prototype-actions-body{display:flex;align-items:center;justify-content:flex-end;gap:10px;flex-wrap:wrap;padding:16px}
 .prototype-actions-body .prototype-action{min-height:40px;padding:9px 16px}
 @media(max-width:700px){.prototype-actions-body{justify-content:stretch}.prototype-actions-body .prototype-action{flex:1 1 100%}}
+
+
+/* Material Design 3 — Material Symbols Rounded */
+.material-symbols-rounded{font-family:'Material Symbols Rounded';font-weight:normal;font-style:normal;font-size:1.2em;line-height:1;letter-spacing:normal;text-transform:none;display:inline-flex;align-items:center;justify-content:center;white-space:nowrap;word-wrap:normal;direction:ltr;font-feature-settings:'liga';-webkit-font-feature-settings:'liga';-webkit-font-smoothing:antialiased;font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;vertical-align:middle;flex:0 0 auto}
+.nav-icon .material-symbols-rounded{font-size:21px}
+.prototype-section-icon .material-symbols-rounded,.quick-action-icon .material-symbols-rounded,.metric-icon .material-symbols-rounded{font-size:22px}
+.prototype-chevron .material-symbols-rounded{font-size:22px}
