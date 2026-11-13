@@ -41,7 +41,7 @@
  }
  function validate(d){
   const errors=[];
-  for(const [key,label] of [['services','Serviços públicos impactados'],['benefits','Benefícios esperados'],['policies','Políticas públicas impactadas'],['access','Forma de acesso'],['dirTi','Dirigente de TI'],['respTech','Responsável Técnico']])if(!d[key])errors.push(label);
+  for(const [key,label] of [['services','Serviços públicos impactados'],['benefits','Benefícios esperados'],['policies','Políticas públicas impactadas'],['population','Público-alvo'],['access','Forma de acesso'],['dirTi','Dirigente de TI'],['respTech','Responsável Técnico']])if(!d[key])errors.push(label);
   if(['API','Arquivo'].includes(d.access)&&!d.volume)errors.push('Volumetria Anual solicitada');
   if(!d.purpose)errors.push('Hipótese de tratamento');
   if(!Array.isArray(d.dataTreatment)||!d.dataTreatment.length)errors.push('Como o dado será utilizado (tipo de tratamento)');
