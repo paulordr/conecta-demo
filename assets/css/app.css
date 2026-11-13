@@ -316,3 +316,10 @@
 .prototype-next .btn{width:100%}
 @media(max-width:900px){.prototype-request-grid{grid-template-columns:1fr}.prototype-request-top{align-items:flex-start;flex-direction:column}.prototype-toolbar{justify-content:flex-start}}
 @media(max-width:600px){.modal:has(.prototype-request-page){width:100vw;max-height:100dvh;height:100dvh;border-radius:0}.modal:has(.prototype-request-page) .modal-body{padding:8px}.request-detail-scroll.prototype-request-page{max-height:calc(100dvh - 16px)}.prototype-request-title{flex-wrap:wrap}.prototype-request-title h2{font-size:17px}.prototype-toolbar .btn{flex:1}.prototype-accordion .request-summary{grid-template-columns:1fr}.prototype-analysis-body{grid-template-columns:1fr 1fr}.prototype-analysis-body>div:nth-child(2){border-right:0}.prototype-history-grid{grid-template-columns:1fr}.prototype-history-grid>div+div{border-left:0;border-top:1px solid #dce5f0;padding:14px 0 0}.prototype-card>header h3{font-size:14px}}
+
+.signature-person-row{display:flex;align-items:center;gap:10px;padding:8px 4px;border-bottom:1px solid #e7edf5}
+.signature-person-row:last-child{border-bottom:0}
+.signature-person-row>.badge{flex:0 0 auto;min-width:76px;text-align:center}
+.signature-person-info{display:flex;flex-direction:column;gap:2px;min-width:0}
+.signature-person-info strong{font-size:12px;color:#17233f}
+.signature-person-info small{font-size:11px;color:#60708a;overflow-wrap:anywhere}
