@@ -227,3 +227,16 @@
 .status-pie-layout .legend-list{flex:1;min-width:0;gap:12px}
 .status-pie-layout .legend-row{grid-template-columns:9px minmax(75px,1fr) auto;gap:7px;font-size:11px}
 @media(max-width:560px){.status-pie-layout{gap:14px}.status-pie{flex-basis:124px;width:124px;height:124px}.status-pie:before{inset:23px}.status-pie-layout .legend-row{font-size:10px}}
+
+/* Fluxo de aprovação das solicitações de adesão */
+.workflow-panel{border:1px solid #d7e2f0;border-radius:14px;background:#f8fbff;padding:18px;margin:16px 0}
+.workflow-panel h3{margin:0 0 8px;color:#173f78}
+.workflow-intro{margin:0 0 12px;color:#52647a}
+.workflow-current{display:flex;align-items:center;gap:8px;font-weight:600;margin-bottom:12px}
+.workflow-actions{display:flex;flex-wrap:wrap;gap:8px}
+.workflow-actions .btn-danger{background:#fff0f0;border:1px solid #d92d20;color:#b42318}
+.workflow-justification{margin:14px 0 0}
+.workflow-steps{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+.workflow-step{font-size:11px;padding:5px 8px;border-radius:7px;background:#edf1f6;color:#65758b}
+.workflow-step.current{background:#dbeafe;color:#174ea6;font-weight:700;outline:1px solid #3b82f6}
+@media(max-width:600px){.workflow-panel{padding:13px}.workflow-actions .btn{width:100%}}
