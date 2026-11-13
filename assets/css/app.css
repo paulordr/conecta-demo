@@ -533,3 +533,10 @@
 /* Alinhamento da seção recolhível de anexos do solicitante */
 .prototype-data-card>.request-attachments-collapsible{margin:7px 12px}
 .prototype-data-card>.request-attachments-collapsible>.request-detail-section{margin:0;padding:12px}
+
+
+/* Ações da solicitação em seção própria no rodapé */
+.prototype-actions-card{margin-top:16px}
+.prototype-actions-body{display:flex;align-items:center;justify-content:flex-end;gap:10px;flex-wrap:wrap;padding:16px}
+.prototype-actions-body .prototype-action{min-height:40px;padding:9px 16px}
+@media(max-width:700px){.prototype-actions-body{justify-content:stretch}.prototype-actions-body .prototype-action{flex:1 1 100%}}
