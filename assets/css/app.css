@@ -525,3 +525,6 @@
 .modal:has(.request-flow-intro) .btn,
 .modal:has(.request-fill-page) .btn,
 .modal:has(.prototype-request-page) .btn{font-size:14px!important;}
+
+/* Respeita o estado hidden do aviso de ajuda após a seleção do fluxo */
+.request-flow-help[hidden]{display:none!important;}
