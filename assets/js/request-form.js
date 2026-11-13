@@ -12,8 +12,7 @@
   const users=data.users.filter(u=>u.status==='Ativo');
   const chosen=ctx.request||{};
   const hypotheses=chosen.hypotheses||[];
-  return '<div class="notice">Preencha as seções abaixo. Cada seção pode ser recolhida; os campos preenchidos permanecem ao navegar entre elas.</div>'+
-   '<form id="request-form" novalidate>'+
+  return '<form id="request-form" novalidate>'+
    '<details class="form-section" open><summary><span class="section-heading"><span class="section-icon" aria-hidden="true">🎯</span><span>01 · Necessidade dos dados</span></span><span class="section-chevron" aria-hidden="true">⌄</span></summary><div class="form-section-body">'+'<div class="request-fields-grid">'+textarea('policies','Políticas públicas impactadas',chosen.policies,'Informe as políticas públicas (ex.: Educação Superior, Programa Bolsa Família, Licença Ambiental etc.).',true)+textarea('services','Serviços públicos impactados',chosen.services,'Descreva os serviços públicos impactados.',true)+textarea('population','Público-alvo',chosen.population,'Descreva a população beneficiada.',true)+textarea('benefits','Benefícios esperados',chosen.benefits,'Descreva os benefícios esperados com o compartilhamento.',true)+'</div>'+'</div></details>'+
    '<details class="form-section"><summary><span class="section-heading"><span class="section-icon" aria-hidden="true">🛡️</span><span>02 · Conformidade e tratamento de dados</span></span><span class="section-chevron" aria-hidden="true">⌄</span></summary><div class="form-section-body">'+'<div class="field"><label>Tipos de dados cadastrados para este conjunto</label><div class="dataset-data-type-summary">'+datasetTypes.map(t=>'<span class="profile-pill">'+esc(t)+'</span>').join('')+'</div><p class="field-help">Esta classificação vem do cadastro do lista de dados.</p></div>'+select('purpose','Hipótese de tratamento',[
    'I - Mediante o fornecimento de consentimento pelo titular',
