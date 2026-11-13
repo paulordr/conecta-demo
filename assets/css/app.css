@@ -350,3 +350,10 @@
 .signature-status-section .signature-person-row>.badge{order:3;min-width:76px;text-align:center}
 .signature-status-section .signature-person-info{display:none}
 @media(max-width:640px){.signature-status-list{grid-template-columns:1fr}}
+
+.prototype-profile-switch{display:flex;flex-direction:column;gap:3px;font-size:10px;color:#52647a;font-weight:700;white-space:nowrap}
+.prototype-profile-switch select{min-height:36px;border:1px solid #cbd8e8;border-radius:8px;padding:6px 9px;background:#fff;color:#172b4d;font-size:12px}
+.prototype-toolbar{min-width:0}
+.prototype-toolbar .prototype-action{display:inline-flex!important;align-items:center;justify-content:center;visibility:visible!important;opacity:1!important;min-height:38px;padding:8px 12px;font-size:12px;font-weight:700}
+@media(max-width:900px){.prototype-toolbar{width:100%;justify-content:flex-start}.prototype-profile-switch{min-width:130px}}
+@media(max-width:600px){.prototype-toolbar .prototype-action{flex:1 1 45%}.prototype-profile-switch{flex:1 1 100%}}
