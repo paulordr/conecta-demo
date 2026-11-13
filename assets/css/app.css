@@ -520,3 +520,8 @@
 /* Espaçamento consistente entre as ações do formulário de solicitação */
 .modal:has(.request-fill-page) .request-fill-footer-actions{display:flex;align-items:center;gap:12px;}
 @media(max-width:760px){.modal:has(.request-fill-page) .request-fill-footer-actions{gap:8px;}}
+
+/* Tipografia padronizada dos botões em todas as etapas de solicitação de compartilhamento */
+.modal:has(.request-flow-intro) .btn,
+.modal:has(.request-fill-page) .btn,
+.modal:has(.prototype-request-page) .btn{font-size:14px!important;}
