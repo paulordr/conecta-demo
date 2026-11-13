@@ -568,3 +568,10 @@
 .form-section summary .section-chevron{display:inline-flex;align-items:center;justify-content:center}
 .form-section summary .section-chevron .material-symbols-rounded{font-size:22px;transition:transform .18s ease}
 .form-section[open] summary .section-chevron .material-symbols-rounded{transform:rotate(180deg)}
+
+
+/* Cards de dados e comentários com recolhimento nativo */
+.prototype-data-card:not([open]){padding-bottom:0}
+.prototype-comments{padding:0}
+.prototype-comments>.prototype-card-summary{border-bottom:1px solid #e0e7f1}
+.prototype-comments .prototype-comments-body{padding:13px 16px}
