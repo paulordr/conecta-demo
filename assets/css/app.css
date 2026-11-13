@@ -575,3 +575,16 @@
 .prototype-comments{padding:0}
 .prototype-comments>.prototype-card-summary{border-bottom:1px solid #e0e7f1}
 .prototype-comments .prototype-comments-body{padding:13px 16px}
+
+
+/* Rodapé permanente do detalhe da solicitação: perfil e ações sempre visíveis */
+#modal-root .modal:has(.prototype-request-page){display:flex;flex-direction:column;height:96vh;max-height:96vh;min-height:0}
+#modal-root .modal:has(.prototype-request-page)>.modal-body{display:block!important;flex:1 1 auto;min-height:0;overflow-y:auto}
+#modal-root .modal:has(.prototype-request-page)>.modal-footer{display:flex!important;position:relative;flex:0 0 auto;z-index:30;min-height:76px;align-items:center;justify-content:space-between;gap:14px;padding:12px 18px;background:#fff;border-top:1px solid #cbd9ef;box-shadow:0 -5px 16px rgba(16,35,74,.10)}
+#modal-root .modal:has(.prototype-request-page)>.modal-footer>div{display:flex;flex:1;align-items:center;justify-content:flex-end;gap:12px;flex-wrap:wrap}
+#modal-root .modal:has(.prototype-request-page) .prototype-footer-controls{display:flex;align-items:center;justify-content:flex-end;gap:14px;flex-wrap:wrap}
+#modal-root .modal:has(.prototype-request-page) .prototype-actions-body{display:flex;align-items:center;justify-content:flex-end;gap:9px;flex-wrap:wrap;min-height:44px}
+#modal-root .modal:has(.prototype-request-page) .prototype-actions-body .prototype-action{display:inline-flex!important;visibility:visible!important;opacity:1!important;align-items:center;justify-content:center;min-height:42px;padding:9px 16px;white-space:normal}
+#modal-root .modal:has(.prototype-request-page) .prototype-profile-switch{display:flex;flex-direction:column;gap:3px;min-width:150px;font-size:10px;color:#52647a;font-weight:700}
+#modal-root .modal:has(.prototype-request-page) .prototype-profile-switch select{min-height:42px;width:100%;border:1px solid #cbd8e8;border-radius:8px;padding:7px 10px;background:#fff;color:#172b4d;font-size:13px}
+@media(max-width:700px){#modal-root .modal:has(.prototype-request-page)>.modal-footer{align-items:stretch;flex-direction:column}#modal-root .modal:has(.prototype-request-page)>.modal-footer>div,#modal-root .modal:has(.prototype-request-page) .prototype-footer-controls{width:100%;align-items:stretch;flex-direction:column}#modal-root .modal:has(.prototype-request-page) .prototype-actions-body{justify-content:stretch}#modal-root .modal:has(.prototype-request-page) .prototype-actions-body .prototype-action{flex:1 1 100%}}
