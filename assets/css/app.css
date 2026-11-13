@@ -402,3 +402,102 @@
  .modal:has(.request-flow-intro) .modal-footer{padding:12px 14px}
  .modal:has(.request-flow-intro) .modal-footer .btn{flex:1}
 }
+
+
+/* Formulário de nova solicitação — composição em página conforme protótipo */
+.modal:has(.request-fill-page){width:min(1540px,99vw);height:min(1024px,98vh);max-height:98vh;border:1px solid #d9e2f0;border-radius:18px}
+.modal:has(.request-fill-page) .modal-head{display:none}
+.modal:has(.request-fill-page) .modal-body{padding:0;background:#fff;overflow:auto}
+.modal:has(.request-fill-page) .modal-footer{position:sticky;bottom:0;z-index:5;min-height:82px;padding:13px 30px;background:#fff;border-top:1px solid #dce5f2}
+.modal:has(.request-fill-page) .modal-footer>div{display:flex;align-items:center;gap:10px}
+.request-fill-page{padding:0 32px 24px;color:#0b1745}
+.request-fill-brand{height:62px;display:flex;align-items:center;gap:27px;border-bottom:1px solid #e0e7f2}
+.request-fill-brand strong{font-size:23px;letter-spacing:-1px;color:#07123e;white-space:nowrap}
+.request-fill-brand strong span{color:#075be8;font-size:22px}
+.request-fill-brand>i{height:30px;width:1px;background:#0b1745}
+.request-fill-brand>b{font-size:24px;letter-spacing:-.7px;color:#07123e}
+.request-flow-banner{display:flex;align-items:center;gap:12px;min-height:68px;margin:16px 0 20px;padding:10px 19px;border:1px solid #cbdcf7;border-radius:13px;background:#f5f8ff;color:#0b1745}
+.request-flow-banner-icon,.request-dataset-icon{display:grid;place-items:center;flex:0 0 45px;width:45px;height:45px;border-radius:11px;background:#e3efff;color:#075be8;font-size:24px}
+.request-flow-banner>strong{font-size:13px;white-space:nowrap}
+.request-flow-banner>b{padding:8px 13px;border-radius:20px;background:#dceaff;color:#09266f;font-size:16px;white-space:nowrap}
+.request-flow-banner>i{height:38px;width:1px;margin:0 12px;background:#9bb5df}
+.request-flow-banner>span:not(.request-flow-banner-icon){flex:1;min-width:150px;font-size:13px;line-height:1.4}
+.request-flow-banner .btn{min-height:39px;border-color:#075be8;color:#075be8;white-space:nowrap}
+.request-fill-heading{margin:0 0 20px}
+.request-fill-heading h2{margin:0;color:#0b1745;font-size:27px;line-height:1.2;letter-spacing:-.6px}
+.request-fill-heading p{margin:5px 0 0;color:#17264b;font-size:15px}
+.request-selected-dataset{display:flex;align-items:center;gap:16px;min-height:78px;margin:0 0 18px;padding:11px 18px;border:1px solid #cbdcf7;border-radius:13px;background:#f5f8ff}
+.request-selected-copy{display:flex;flex:1;flex-direction:column;gap:3px;min-width:0}
+.request-selected-copy small,.request-selected-tech small{font-size:12px;color:#18264a}
+.request-selected-copy strong{font-size:16px;color:#091641}
+.request-selected-tech{display:flex;flex-direction:column;gap:3px;min-width:130px;padding-left:24px;border-left:1px solid #b8c9e6}
+.request-selected-tech span{width:max-content;padding:4px 13px;border-radius:20px;background:#e0ecff;color:#075be8;font-size:13px;font-weight:800}
+.request-selected-dataset .btn{min-height:40px;border-color:#075be8;color:#075be8;white-space:nowrap}
+.request-dataset-picker{margin:0 0 16px;padding:14px 17px;border:1px solid #d6e1f1;border-radius:12px;background:#f8faff}
+.request-dataset-picker[hidden]{display:none!important}
+.request-dataset-picker .field{margin-bottom:8px}
+.request-dataset-picker .field-help{padding-bottom:3px}
+#request-form{display:grid;gap:12px}
+#request-form .form-section{margin:0;border:1px solid #cbdcf7;border-radius:13px;overflow:hidden}
+#request-form .form-section>summary{min-height:46px;padding:9px 18px;background:#f1f6ff;color:#0b1745;font-size:17px}
+#request-form .form-section>summary .section-heading{display:flex;align-items:center;gap:12px}
+#request-form .section-icon{display:grid;place-items:center;width:37px;height:37px;border-radius:10px;background:#e0edff;color:#075be8;font-size:21px}
+#request-form .form-section-body{padding:13px 25px 5px;background:#fff}
+#request-form .request-fields-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:44px;row-gap:0}
+#request-form .request-fields-grid .field{margin-bottom:12px}
+#request-form .field{gap:5px}
+#request-form .field label{font-size:14px;font-weight:800;color:#0c1740}
+#request-form .field textarea{min-height:74px;padding:9px 12px;border:1px solid #c7d5eb;border-radius:11px;font-size:14px;line-height:1.45;color:#25314b}
+#request-form .field textarea::placeholder{color:#3e4658;opacity:1}
+#request-form .section-chevron{font-size:0}
+#request-form .section-chevron:after{content:"⌄";font-size:20px;color:#07123e}
+#request-form details[open]>.form-section-body{display:block}
+#request-form details:not([open]) .section-chevron:after{content:"⌄"}
+#request-form details[open] .section-chevron:after{content:"⌃"}
+#request-form .form-section-body>.field{margin-bottom:15px}
+#request-form .dataset-data-type-summary{display:flex;flex-wrap:wrap;gap:7px}
+#request-form .check-option{font-size:13px}
+.request-fill-footer-actions{margin-left:auto}
+.modal:has(.request-fill-page) .modal-footer .btn{min-height:49px;padding:10px 19px;font-size:14px;border-radius:11px}
+.modal:has(.request-fill-page) #sign-request{min-width:150px;background:#0756ed}
+.modal:has(.request-fill-page) #previous-request-step{min-width:145px}
+@media(max-width:900px){
+ .request-fill-page{padding:0 18px 20px}
+ .request-flow-banner{flex-wrap:wrap}
+ .request-flow-banner>span:not(.request-flow-banner-icon){flex-basis:100%}
+ .request-flow-banner>i{display:none}
+ .request-fill-brand>b{font-size:18px}
+ .request-fill-brand strong{font-size:19px}
+ .request-selected-dataset{flex-wrap:wrap}
+ .request-selected-copy{flex-basis:calc(100% - 80px)}
+ .request-selected-tech{margin-left:60px}
+ #request-form .request-fields-grid{column-gap:20px}
+}
+@media(max-width:640px){
+ .modal:has(.request-fill-page){width:100vw;height:100dvh;max-height:100dvh;border-radius:0}
+ .request-fill-page{padding:0 12px 15px}
+ .request-fill-brand{height:auto;min-height:58px;gap:10px;flex-wrap:wrap;padding:10px 0}
+ .request-fill-brand strong{font-size:16px}
+ .request-fill-brand>b{font-size:14px;flex:1}
+ .request-fill-brand>i{height:24px}
+ .request-flow-banner{gap:8px;margin:12px 0;padding:10px}
+ .request-flow-banner>b{font-size:12px}
+ .request-flow-banner>strong{font-size:11px}
+ .request-flow-banner .btn{margin-left:auto}
+ .request-fill-heading h2{font-size:22px}
+ .request-fill-heading p{font-size:12px}
+ .request-selected-dataset{gap:9px;padding:10px}
+ .request-selected-copy strong{font-size:12px}
+ .request-selected-tech{margin-left:0;padding-left:10px;min-width:90px}
+ .request-selected-dataset .btn{margin-left:auto}
+ #request-form .request-fields-grid{grid-template-columns:1fr;column-gap:0}
+ #request-form .form-section>summary{font-size:14px;padding:8px 10px}
+ #request-form .form-section-body{padding:12px 12px 3px}
+ #request-form .field label{font-size:12px}
+ #request-form .field textarea{font-size:12px}
+ .modal:has(.request-fill-page) .modal-footer{padding:9px 10px;gap:7px}
+ .modal:has(.request-fill-page) .modal-footer .btn{min-height:42px;padding:8px 10px;font-size:11px}
+ .modal:has(.request-fill-page) .modal-footer>div{gap:6px}
+ .modal:has(.request-fill-page) #previous-request-step{min-width:90px}
+ .modal:has(.request-fill-page) #sign-request{min-width:90px}
+}
