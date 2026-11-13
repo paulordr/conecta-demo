@@ -528,3 +528,8 @@
 
 /* Respeita o estado hidden do aviso de ajuda após a seleção do fluxo */
 .request-flow-help[hidden]{display:none!important;}
+
+
+/* Alinhamento da seção recolhível de anexos do solicitante */
+.prototype-data-card>.request-attachments-collapsible{margin:7px 12px}
+.prototype-data-card>.request-attachments-collapsible>.request-detail-section{margin:0;padding:12px}
