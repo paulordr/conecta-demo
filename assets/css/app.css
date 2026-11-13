@@ -357,3 +357,48 @@
 .prototype-toolbar .prototype-action{display:inline-flex!important;align-items:center;justify-content:center;visibility:visible!important;opacity:1!important;min-height:38px;padding:8px 12px;font-size:12px;font-weight:700}
 @media(max-width:900px){.prototype-toolbar{width:100%;justify-content:flex-start}.prototype-profile-switch{min-width:130px}}
 @media(max-width:600px){.prototype-toolbar .prototype-action{flex:1 1 45%}.prototype-profile-switch{flex:1 1 100%}}
+
+
+/* Etapa inicial da nova solicitação — seleção do fluxo conforme protótipo */
+.modal:has(.request-flow-intro){width:min(820px,96vw);max-height: min(94vh,760px);border-radius:12px}
+.modal:has(.request-flow-intro) .modal-head{padding:13px 22px}
+.modal:has(.request-flow-intro) .modal-head h2{font-size:16px;font-weight:800;color:#111a35}
+.modal:has(.request-flow-intro) .modal-body{padding:24px 28px 30px;background:#fff}
+.modal:has(.request-flow-intro) .modal-footer{padding:13px 22px;background:#fff}
+.modal:has(.request-flow-intro) .modal-footer>div{gap:9px}
+.request-flow-intro{color:#111a35}
+.request-flow-heading{display:flex;align-items:center;gap:15px;margin:0 0 22px}
+.request-flow-main-icon{display:grid;place-items:center;flex:0 0 48px;width:48px;height:48px;border-radius:10px;background:#eef5ff;color:#075be8;font-size:27px;font-weight:800}
+.request-flow-heading h2{margin:0;color:#101b3b;font-size:18px;line-height:1.25;letter-spacing:-.35px}
+.request-flow-heading p{margin:5px 0 0;color:#273754;font-size:11px}
+.request-flow-options{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.request-flow-option{position:relative;display:flex;align-items:flex-start;gap:12px;min-width:0;min-height:185px;padding:14px 16px;border:1px solid #d9e0eb;border-radius:11px;background:#fff;cursor:pointer;transition:border-color .15s,background .15s,box-shadow .15s}
+.request-flow-option:hover{border-color:#8db5f2}
+.request-flow-option.selected{border:1.5px solid #1764e8;background:#f1f6ff;box-shadow:0 0 0 1px #1764e81a}
+.request-flow-option input{position:absolute;opacity:0;pointer-events:none}
+.request-flow-option-icon{display:grid;place-items:center;flex:0 0 46px;width:46px;height:46px;border-radius:10px;background:#eaf2ff;color:#1260d7;font-size:25px;font-weight:800}
+.request-flow-option-icon.missing{background:#eeeaff;color:#6136d9}
+.request-flow-option-content{display:flex;flex:1;flex-direction:column;gap:6px;min-width:0;padding-right:12px}
+.request-flow-option-content>strong{font-size:12px;line-height:1.35;color:#111a35}
+.request-flow-option-content>small{font-size:10px;line-height:1.45;color:#1e2b43}
+.request-flow-benefits{display:flex;align-items:flex-start;gap:7px;font-size:10px;line-height:1.4;color:#18243a}
+.request-flow-benefits>span{display:grid;place-items:center;flex:0 0 13px;width:13px;height:13px;margin-top:0;border-radius:50%;background:#d8f5df;color:#16803d;font-size:10px;font-weight:900}
+.request-flow-radio{position:absolute;top:12px;right:12px;width:16px;height:16px;border:2px solid #b7c2d2;border-radius:50%;background:#fff}
+.request-flow-option.selected .request-flow-radio{border:5px solid #1764e8}
+.request-flow-help{display:flex;align-items:flex-start;gap:12px;margin-top:27px;padding:12px 14px;border-radius:9px;background:#edf4ff;color:#15274a}
+.request-flow-info{display:grid;place-items:center;flex:0 0 18px;width:18px;height:18px;border-radius:50%;background:#0964e8;color:#fff;font-size:13px;font-weight:800}
+.request-flow-help strong{display:block;font-size:12px;line-height:1.35}
+.request-flow-help p{margin:4px 0 0;font-size:10px;line-height:1.45;color:#253652}
+@media(max-width:650px){
+ .modal:has(.request-flow-intro){width:100%;max-height:100dvh;height:100dvh;border-radius:0}
+ .modal:has(.request-flow-intro) .modal-body{padding:18px 14px}
+ .request-flow-heading{gap:11px;margin-bottom:17px}
+ .request-flow-heading h2{font-size:16px}
+ .request-flow-options{grid-template-columns:1fr;gap:10px}
+ .request-flow-option{min-height:0;padding:12px}
+ .request-flow-option-content>strong{font-size:12px}
+ .request-flow-benefits{font-size:10px}
+ .request-flow-help{margin-top:16px}
+ .modal:has(.request-flow-intro) .modal-footer{padding:12px 14px}
+ .modal:has(.request-flow-intro) .modal-footer .btn{flex:1}
+}
