@@ -609,3 +609,11 @@
 .request-table-wrap .request-sort-button:focus-visible{outline:2px solid #3978ee!important;outline-offset:2px!important}
 .request-table-wrap .request-sort-button[aria-sort="ascending"],.request-table-wrap .request-sort-button[aria-sort="descending"]{background:#eaf1ff!important;color:#155eef!important}
 @media(max-width:700px){.request-table-wrap .request-sort-button{font-size:9px!important;padding:6px!important;gap:4px!important}}
+
+
+/* Remove o marcador nativo duplicado dos accordions do formulário */
+.form-section>summary{list-style:none!important;}
+.form-section>summary::marker{content:""!important;display:none!important;font-size:0!important;}
+.form-section>summary::-webkit-details-marker{display:none!important;width:0!important;height:0!important;}
+.form-section>summary .section-chevron{margin-left:auto!important;flex:0 0 22px!important;}
+.form-section>summary .section-chevron .material-symbols-rounded{display:block!important;}
