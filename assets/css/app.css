@@ -516,3 +516,7 @@
 .request-flow-inline-picker .field select{width:100%;min-height:42px;border:1px solid #c7d5eb;border-radius:8px;background:#fff;padding:8px 11px;color:#152342;font-size:12px}
 .request-flow-inline-picker .field select:disabled{background:#edf1f7;color:#78849a;cursor:not-allowed}
 @media(max-width:650px){.request-flow-inline-picker .form-grid{grid-template-columns:1fr;gap:10px}.request-flow-inline-picker{padding:12px}}
+
+/* Espaçamento consistente entre as ações do formulário de solicitação */
+.modal:has(.request-fill-page) .request-fill-footer-actions{display:flex;align-items:center;gap:12px;}
+@media(max-width:760px){.modal:has(.request-fill-page) .request-fill-footer-actions{gap:8px;}}
