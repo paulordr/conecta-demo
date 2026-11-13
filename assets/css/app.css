@@ -323,3 +323,20 @@
 .signature-person-info{display:flex;flex-direction:column;gap:2px;min-width:0}
 .signature-person-info strong{font-size:12px;color:#17233f}
 .signature-person-info small{font-size:11px;color:#60708a;overflow-wrap:anywhere}
+
+/* Cards de análise e histórico recolhíveis */
+.prototype-collapsible{display:block}
+.prototype-card-summary{display:flex;align-items:center;gap:12px;list-style:none;cursor:pointer;padding:12px 15px;border-bottom:1px solid #e0e7f1;background:linear-gradient(110deg,#fff,#f6f9ff)}
+.prototype-card-summary::-webkit-details-marker{display:none}
+.prototype-card-summary>div{flex:1;min-width:0}
+.prototype-card-summary h3{font-size:16px;margin:0;color:#101b3b}
+.prototype-card-summary p{font-size:12px;margin:3px 0 0;color:#35496c}
+.prototype-card-summary .badge{white-space:nowrap}
+.prototype-card-summary .prototype-chevron{transition:transform .15s}
+.prototype-collapsible:not([open])>.prototype-card-summary .prototype-chevron{transform:rotate(-90deg)}
+.prototype-collapsible .prototype-analysis-body{padding:13px 16px}
+.prototype-collapsible-cedent>.cedent-analysis-panel{border:0;border-radius:0;box-shadow:none}
+.prototype-collapsible-cedent .cedent-analysis-head{display:none}
+.prototype-collapsible-cedent .cedent-analysis-intro{margin:12px 16px}
+.prototype-collapsible-cedent .cedent-analysis-status,.prototype-collapsible-cedent .cedent-analysis-panel>.field,.prototype-collapsible-cedent .cedent-analysis-save,.prototype-collapsible-cedent .cedent-analysis-existing{margin-left:16px;margin-right:16px}
+@media(max-width:600px){.prototype-card-summary{gap:8px;padding:10px}.prototype-card-summary h3{font-size:14px}}
