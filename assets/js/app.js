@@ -194,7 +194,7 @@ function applyWorkflowAction(action,requestId){
   function markSignatureSigned(requestId,role){const r=data.requests.find(x=>x.id===requestId);if(!r)return;r.signatures=r.signatures||{dirTi:false,respTech:false};if(!['dirTi','respTech'].includes(role))return;r.signatures[role]=true;r.history=r.history||[];const label=role==='dirTi'?'Dirigente de TI':'Responsável Técnico';r.history.push({status:'Assinatura registrada (simulação)',date:today(),note:label+' marcou a solicitação como assinada. A assinatura oficial exige integração com o serviço de assinatura.'});persist();viewRequest(requestId);toast(label+': status alterado para Assinado.','success')}
  const cedentEditableStatuses=['Em análise pelo Cedente dos dados','Em análise pelo Cedente','Em avaliação de viabilidade'];
   const isCedentReview=currentProfile==='cedente'&&cedentEditableStatuses.includes(statusLabel(r.status));
-  const canEditCedentAnalysis=isCedentReview||currentProfile==='solicitante';
+  const canEditCedentAnalysis=isCedentReview;
   const cedentAnalysisInitiallyOpen=!['Em rascunho','Aguardando assinaturas','Pendente de assinaturas'].includes(statusLabel(r.status));
   const renderAttachmentList=files=>files.map((f,i)=>'<div class="summary-box"><small>Anexo '+(i+1)+' · '+esc(f.type||'Arquivo')+' · '+esc(f.sizeLabel||'')+'</small><strong>'+esc(f.name)+'</strong>'+(f.dataUrl?'<a class="link-action" href="'+f.dataUrl+'" download="'+esc(f.name)+'">Baixar arquivo</a>':'')+'</div>').join('')||'<p class="muted">Nenhum anexo registrado.</p>';
   const requesterAttachments=(r.attachments||[]).filter(f=>f.uploadedByRole!=='cedente');
