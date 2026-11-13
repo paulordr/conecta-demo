@@ -111,9 +111,9 @@
    modal('Nova Solicitação de Compartilhamento de Dados',choiceMarkup,'<button class="btn btn-secondary" data-close>Cancelar</button><button class="btn btn-primary" id="advance-request-flow">Avançar <span aria-hidden="true">→</span></button>',true);
    const inlinePicker=$('#request-flow-inline-picker'),technologySelect=$('#flow-technology'),datasetSelect=$('#flow-dataset');
    const updateFlowDatasetOptions=()=>{const tech=technologySelect.value;const matches=availableDatasets.filter(d=>datasetTechnology(d)===tech);datasetSelect.innerHTML='<option value="">Selecione um conjunto de dados</option>'+matches.map(d=>'<option value="'+esc(d.id)+'">'+esc(d.name)+' — '+esc(d.org)+'</option>').join('');datasetSelect.disabled=!tech||!matches.length;if(tech&&!matches.length)datasetSelect.innerHTML='<option value="">Nenhum conjunto disponível para esta tecnologia</option>';};
-   const selectFlow=choice=>{const input=$('input[name="request-flow-choice"][value="'+choice+'"]');if(input)input.checked=true;$('.request-flow-option').forEach(card=>card.classList.toggle('selected',card.dataset.flowCard===choice));inlinePicker.hidden=choice!=='available';};
-   $('input[name="request-flow-choice"]').forEach(input=>input.addEventListener('change',()=>selectFlow(input.value)));
-   $('.request-flow-option').forEach(card=>card.addEventListener('click',()=>selectFlow(card.dataset.flowCard)));
+   const selectFlow=choice=>{const input=$('input[name="request-flow-choice"][value="'+choice+'"]');if(input)input.checked=true;$$('.request-flow-option').forEach(card=>card.classList.toggle('selected',card.dataset.flowCard===choice));inlinePicker.hidden=choice!=='available';};
+   $$('input[name="request-flow-choice"]').forEach(input=>input.addEventListener('change',()=>selectFlow(input.value)));
+   $$('.request-flow-option').forEach(card=>card.addEventListener('click',()=>selectFlow(card.dataset.flowCard)));
    technologySelect.addEventListener('change',updateFlowDatasetOptions);
    $('#advance-request-flow').onclick=()=>{const choice=$('input[name="request-flow-choice"]:checked')?.value;if(!choice){toast('Selecione um dos fluxos para continuar.','error');return;}if(choice==='available'){const technology=technologySelect.value,datasetId=datasetSelect.value;if(!technology||!datasetId){toast('Selecione a tecnologia e o conjunto de dados para continuar.','error');return;}closeModal();openRequest(datasetId,{});}else{closeModal();openMissingDataset({});}};
    return;
