@@ -60,7 +60,7 @@
     if(requestFilters.from&&(r.createdAt||'')<requestFilters.from)return false;
     if(requestFilters.to&&(r.createdAt||'')>requestFilters.to)return false;
     return true
-  }).sort((a,b)=>(b.createdAt||'').localeCompare(a.createdAt||''));
+  }).sort((a,b)=>String(b.createdAt||b.date||'').localeCompare(String(a.createdAt||a.date||'')));
   const total=reqs.length,analisys=reqs.filter(r=>r.status==='Em análise').length,approved=reqs.filter(r=>r.status==='Aprovada').length,denied=reqs.filter(r=>r.status==='Negada').length;
   return '<div class="page-head"><div><h1>Solicitações de Interoperabilidade e Compartilhamento de Dados</h1><p>Gerencie e acompanhe as solicitações de interoperabilidade e compartilhamento de dados</p></div><div class="head-actions">'+btn('＋ Nova Solicitação','new-request')+'</div></div>'+
   '<div class="request-metrics"><article class="request-metric metric-total"><span>Total</span><strong>'+total+'</strong></article><article class="request-metric metric-review"><span>Em Análise</span><strong>'+analisys+'</strong></article><article class="request-metric metric-approved"><span>Aprovados</span><strong>'+approved+'</strong></article><article class="request-metric metric-denied"><span>Negados</span><strong>'+denied+'</strong></article></div>'+
