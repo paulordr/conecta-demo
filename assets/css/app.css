@@ -552,3 +552,12 @@
 /* Status da solicitação com maior hierarquia visual no cabeçalho */
 .prototype-request-title>.badge{margin-left:16px;padding:10px 16px;min-height:40px;display:inline-flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;line-height:1.2;letter-spacing:.1px;border-radius:12px;white-space:nowrap;box-shadow:0 1px 3px rgba(16,35,74,.08)}
 @media(max-width:640px){.prototype-request-title{flex-wrap:wrap}.prototype-request-title>.badge{margin-left:56px;margin-top:2px}}
+
+
+/* Ícones Material Design na seleção do fluxo de solicitação */
+.request-flow-main-icon .material-symbols-rounded{font-size:34px;font-variation-settings:'FILL' 0,'wght' 500,'GRAD' 0,'opsz' 40}
+.request-flow-option-icon{position:relative}
+.request-flow-option-icon>.material-symbols-rounded{font-size:30px;font-variation-settings:'FILL' 0,'wght' 500,'GRAD' 0,'opsz' 32}
+.request-flow-option-icon .request-flow-search-icon{position:absolute;right:7px;bottom:5px;font-size:19px;font-weight:700;background:#eeeaff;border-radius:50%;padding:1px}
+.request-flow-info .material-symbols-rounded{font-size:18px;font-variation-settings:'FILL' 1,'wght' 500,'GRAD' 0,'opsz' 20}
+.request-flow-benefits>span .material-symbols-rounded{font-size:13px;font-variation-settings:'FILL' 1,'wght' 600,'GRAD' 0,'opsz' 16}
