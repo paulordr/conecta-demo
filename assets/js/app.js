@@ -136,6 +136,8 @@
  function bindRequestFields(){
   const policies=$('#policies');
   policies?.addEventListener('change',()=>{const d=RequestForm.read();const host=$('#policy-other-host');if(!host)return;host.innerHTML=policies.value==='Outra'?textarea('policy-other','Informe a política pública impactada',d.policyOther||'','Descreva a política pública impactada',true):'';});
+  const purpose=$('#purpose');
+  purpose?.addEventListener('change',()=>{const d=RequestForm.read();const host=$('#hypothesis-other-host');if(host)host.innerHTML=purpose.value==='Outra'?field('hyp-other-text','Especifique outra hipótese',d.hypothesisOther||'','Descreva a hipótese','text',true):'';});
   const access=$('#access');
   access?.addEventListener('change',()=>{const d=RequestForm.read();const host=$('#access-fields');host.innerHTML=['API','Arquivo'].includes(d.access)?'<div class="form-grid">'+field('volume','Volumetria Anual Solicitada',d.volume,'Informe a volumetria anual','text',true)+'</div>'+textarea('technical','Informações Técnicas adicionais',d.technical,'Descreva as informações técnicas adicionais'):'';});
   const treatmentOption=$('#data-treatment-option');
