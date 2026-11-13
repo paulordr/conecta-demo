@@ -240,3 +240,14 @@
 .workflow-step{font-size:11px;padding:5px 8px;border-radius:7px;background:#edf1f6;color:#65758b}
 .workflow-step.current{background:#dbeafe;color:#174ea6;font-weight:700;outline:1px solid #3b82f6}
 @media(max-width:600px){.workflow-panel{padding:13px}.workflow-actions .btn{width:100%}}
+
+.official-document-preview{background:#fff;color:#161616;padding:24px;max-height:70vh;overflow:auto;font:13px/1.55 Arial,sans-serif}
+.official-document{max-width:820px;margin:0 auto;color:#161616;font:13px/1.55 Arial,sans-serif}
+.official-doc-header{display:flex;flex-direction:column;text-align:center;gap:3px;margin:0 auto 28px}
+.official-document p{margin:12px 0;text-align:justify}.official-document h2{text-align:center;font-size:15px;margin:22px 0}
+.official-document h3{font-size:14px;margin:20px 0 8px}.official-document table{border-collapse:collapse;width:100%;margin:10px 0 18px;table-layout:fixed}
+.official-document th,.official-document td{border:1px solid #555;padding:7px;text-align:left;vertical-align:top;overflow-wrap:anywhere}
+.official-document th{background:#f1f1f1;width:30%}.official-document .official-api-table th{width:auto}
+.official-document li{margin:8px 0}.official-doc-date{text-align:right;margin-top:30px}
+.official-doc-signature{text-align:center;margin:42px auto 24px;display:flex;flex-direction:column;gap:5px}
+@media(max-width:640px){.official-document-preview{padding:12px}.official-document{font-size:12px}}
