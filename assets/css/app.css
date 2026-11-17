@@ -675,6 +675,9 @@
 .cedent-current-user .material-symbols-rounded{font-size:18px;color:#2563eb}
 .cedent-current-user strong{color:#172747}
 .cedent-analysis-panel .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:start}
+.cedent-analysis-panel #cedent-conecta-access-fields{display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:start}
+.cedent-analysis-panel #cedent-conecta-access-fields[hidden]{display:none}
+.cedent-analysis-panel #cedent-conecta-access-fields .field{width:100%;margin:0;min-width:0}
 .cedent-analysis-panel .field{min-width:0}
 .cedent-analysis-panel .field select,.cedent-analysis-panel .field textarea{width:100%;box-sizing:border-box}
 @media(max-width:760px){.mock-user-switcher{display:none}.cedent-analysis-panel .form-grid{grid-template-columns:1fr}}
