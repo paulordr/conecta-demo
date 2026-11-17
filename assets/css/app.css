@@ -1085,3 +1085,67 @@ th{
 }
 #modal-root .signer-status-tag.is-signed{background:#dcfce7!important;color:#166534!important;border:1px solid #bbf7d0!important}
 #modal-root .signer-status-tag.is-pending{background:#fef3c7!important;color:#92400e!important;border:1px solid #fde68a!important}
+
+
+/* Formulário de nova solicitação: modal com proporção clara e fechamento no rodapé */
+#modal-root>.modal-backdrop>.modal:has(.request-fill-page){
+ box-sizing:border-box!important;
+ width:min(1180px,92vw)!important;
+ height:min(850px,88vh)!important;
+ max-height:88vh!important;
+ min-height:0!important;
+ margin:auto!important;
+ border:1px solid #d7e1ef!important;
+ border-radius:18px!important;
+ box-shadow:0 24px 80px rgba(11,29,56,.28)!important;
+}
+#modal-root>.modal-backdrop>.modal:has(.request-fill-page) .modal-head{display:none!important}
+#modal-root>.modal-backdrop>.modal:has(.request-fill-page) .modal-body{
+ flex:1 1 0!important;
+ min-height:0!important;
+ overflow-x:hidden!important;
+ overflow-y:auto!important;
+ padding:0!important;
+}
+#modal-root>.modal-backdrop>.modal:has(.request-fill-page) .modal-footer{
+ position:relative!important;
+ flex:0 0 auto!important;
+ min-height:68px!important;
+ display:flex!important;
+ align-items:center!important;
+ justify-content:space-between!important;
+ gap:14px!important;
+ padding:12px 22px!important;
+ background:#fff!important;
+ border-top:1px solid #dce5f2!important;
+}
+#modal-root>.modal-backdrop>.modal:has(.request-fill-page) .modal-footer>span{display:none!important}
+#modal-root>.modal-backdrop>.modal:has(.request-fill-page) .modal-footer>div{
+ display:flex!important;
+ align-items:center!important;
+ gap:9px!important;
+ flex-wrap:wrap!important;
+}
+#modal-root .request-fill-footer-navigation{justify-content:flex-start!important}
+#modal-root .request-fill-footer-actions{justify-content:flex-end!important}
+#modal-root .request-fill-brand{position:relative!important}
+#modal-root .request-fill-close{display:none!important}
+@media(max-width:760px){
+ #modal-root>.modal-backdrop>.modal:has(.request-fill-page){
+  width:calc(100vw - 24px)!important;
+  height:calc(100dvh - 24px)!important;
+  max-height:calc(100dvh - 24px)!important;
+  border-radius:16px!important;
+ }
+ #modal-root>.modal-backdrop>.modal:has(.request-fill-page) .modal-footer{
+  align-items:stretch!important;
+  flex-direction:column!important;
+  padding:10px 14px!important;
+ }
+ #modal-root>.modal-backdrop>.modal:has(.request-fill-page) .modal-footer>div{
+  width:100%!important;
+  justify-content:stretch!important;
+ }
+ #modal-root .request-fill-footer-navigation .btn,
+ #modal-root .request-fill-footer-actions .btn{flex:1 1 0!important}
+}
