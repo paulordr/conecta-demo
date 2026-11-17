@@ -152,7 +152,7 @@
   const purpose=$('#purpose');
   purpose?.addEventListener('change',()=>{const d=RequestForm.read();const host=$('#hypothesis-other-host');if(host)host.innerHTML=purpose.value==='Outra'?field('hyp-other-text','Especifique outra hipótese',d.hypothesisOther||'','Descreva a hipótese','text',true):'';});
   const access=$('#access');
-  access?.addEventListener('change',()=>{const d=RequestForm.read();const host=$('#access-fields');host.innerHTML=d.access?'<div class="field"><label for="volume">Volumetria Anual Solicitada <span class="required">*</span></label><input id="volume" type="text" value="'+esc(d.volume||'')+'" placeholder="Informe a volumetria anual" required></div>'+textarea('technical','Informações Técnicas adicionais',d.technical,'Descreva as informações técnicas adicionais'):'';});
+  access?.addEventListener('change',()=>{const d=RequestForm.read();const volumeHost=$('#volume-field-host');if(volumeHost)volumeHost.innerHTML=d.access?field('volume','Volumetria Anual Solicitada',d.volume,'Informe a volumetria anual','text',true):'';const host=$('#access-fields');if(host)host.innerHTML=d.access?textarea('technical','Informações Técnicas adicionais',d.technical,'Descreva as informações técnicas adicionais'):'';});
   const desiredPeriodicity=$('#desired-periodicity');
   desiredPeriodicity?.addEventListener('change',()=>{const d=RequestForm.read();const host=$('#desired-periodicity-other-host');if(host)host.innerHTML=desiredPeriodicity.value==='Outra'?field('desired-periodicity-other','Especifique a periodicidade',d.desiredPeriodicityOther||'','Informe a periodicidade desejada','text',true):'';});
   const treatmentOption=$('#data-treatment-option');
