@@ -1072,3 +1072,16 @@ th{
   }
   #modal-root .request-status-actions>.muted{grid-column:1/-1!important}
 }
+
+
+/* Tags de situação das assinaturas dos responsáveis */
+#modal-root .signer-summary-box{display:flex!important;flex-direction:column!important;align-items:flex-start!important;gap:7px!important}
+#modal-root .signer-summary-value{display:flex!important;align-items:center!important;gap:9px!important;flex-wrap:wrap!important}
+#modal-root .signer-summary-value strong{font-size:14px!important;font-weight:600!important;color:#172b4d!important}
+#modal-root .signer-status-tag{
+ display:inline-flex!important;align-items:center!important;justify-content:center!important;
+ min-height:24px!important;padding:3px 10px!important;border-radius:999px!important;
+ font-size:12px!important;font-weight:700!important;line-height:1.2!important;white-space:nowrap!important
+}
+#modal-root .signer-status-tag.is-signed{background:#dcfce7!important;color:#166534!important;border:1px solid #bbf7d0!important}
+#modal-root .signer-status-tag.is-pending{background:#fef3c7!important;color:#92400e!important;border:1px solid #fde68a!important}
