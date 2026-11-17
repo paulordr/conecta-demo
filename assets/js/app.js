@@ -187,7 +187,7 @@ function applyWorkflowAction(action,requestId){
    r.attachments.push(...newFiles);
    r.cedentReviewer=reviewer;r.cedenteJustification=justification;r.cedentReviewDate=today();
    r.cedentAnalysisHistory=Array.isArray(r.cedentAnalysisHistory)?r.cedentAnalysisHistory:[];
-   r.cedentAnalysisHistory.push({action,status:next[0],responsible:reviewer,date:today(),justification,attachments:newFiles.map(f=>({name:f.name,type:f.type,size:f.size,sizeLabel:f.sizeLabel,dataUrl:f.dataUrl,uploadedBy:f.uploadedBy,uploadedAt:f.uploadedAt}))});
+   r.cedentAnalysisHistory.push({action,status:next[0],responsible:reviewer,date:today(),justification,attachments:r.attachments.filter(f=>f.uploadedByRole==='cedente').map(f=>({name:f.name,type:f.type,size:f.size,sizeLabel:f.sizeLabel,dataUrl:f.dataUrl,uploadedBy:f.uploadedBy,uploadedAt:f.uploadedAt}))});
    r.history=Array.isArray(r.history)?r.history:[];
    r.history.push({status:'Análise do Cedente registrada',date:today(),note:'Responsável: '+reviewer+' · Justificativa: '+(justification||'Não informada')+' · Documentos anexados nesta etapa: '+(newFiles.length?newFiles.map(f=>f.name).join(', '):'Nenhum')});
    r.workflowNote=note;
