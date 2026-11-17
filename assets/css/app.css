@@ -727,3 +727,18 @@
     row-gap:0!important;
   }
 }
+
+
+/* Recuo dos campos Tecnologia e Conjunto de dados para alinhar
+   com os demais campos da seção Análise do Cedente */
+#modal-root .cedent-analysis-panel #cedent-conecta-access-fields{
+  width:calc(100% - 40px)!important;
+  margin:0 20px!important;
+  box-sizing:border-box!important;
+}
+@media(max-width:760px){
+  #modal-root .cedent-analysis-panel #cedent-conecta-access-fields{
+    width:100%!important;
+    margin:0!important;
+  }
+}
