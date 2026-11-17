@@ -207,7 +207,7 @@ function applyWorkflowAction(action,requestId){
   const catalogTechnology=datasetTechnology(catalogDataset);
   const platformTechnology=delivery.technology||catalogTechnology;
   const availableInConecta=action==='cedent-approve'
-   ? ['API','Grandes Volumes'].includes(catalogTechnology)
+   ? !!catalogDataset&&['API','Grandes Volumes'].includes(catalogTechnology)
    : action==='data-available'&&delivery.method==='Disponível no Conecta'&&['API','Grandes Volumes'].includes(platformTechnology);
   if(availableInConecta){
    next[0]='Aguardando análise do Conecta';
