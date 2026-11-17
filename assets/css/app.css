@@ -982,3 +982,93 @@ th{
   .page-head h1{font-size:var(--md-headline-small)}
   .panel-head h2,.panel h2,.table-head h2{font-size:var(--md-title-medium)}
 }
+
+
+/* Organização das ações da solicitação: utilitárias separadas das ações de fluxo/status. */
+#modal-root>.modal-backdrop>.request-detail-modal>.modal-head.request-detail-toolbar{
+  align-items:center!important;
+  justify-content:space-between!important;
+  gap:14px!important;
+  flex-wrap:wrap!important;
+}
+#modal-root .request-detail-toolbar .request-footer-stamp{
+  flex:1 1 100%!important;
+  min-width:0!important;
+  margin:0 0 2px!important;
+  white-space:normal!important;
+}
+#modal-root .request-toolbar-layout{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:space-between!important;
+  gap:18px!important;
+  width:100%!important;
+  min-width:0!important;
+}
+#modal-root .request-utility-actions,
+#modal-root .request-status-actions{
+  display:flex!important;
+  align-items:center!important;
+  gap:9px!important;
+  flex-wrap:wrap!important;
+  min-width:0!important;
+}
+#modal-root .request-utility-actions{
+  justify-content:flex-start!important;
+  padding-right:18px!important;
+  border-right:1px solid #dbe4f0!important;
+}
+#modal-root .request-status-actions{
+  flex:1 1 auto!important;
+  justify-content:flex-end!important;
+}
+#modal-root .request-utility-actions .prototype-action{
+  background:#f8fafd!important;
+  border-color:#dce4ef!important;
+  color:#42536c!important;
+}
+#modal-root .request-status-actions .prototype-action.primary{
+  background:#0757e8!important;
+  border-color:#0757e8!important;
+  color:#fff!important;
+}
+#modal-root .request-status-actions .prototype-action.danger{
+  background:#fff!important;
+  border-color:#f1caca!important;
+  color:#bd3030!important;
+}
+#modal-root .request-status-actions>.muted{
+  font-size:12px!important;
+  color:#64748b!important;
+  padding:8px 4px!important;
+}
+@media(max-width:1050px){
+  #modal-root .request-toolbar-layout{
+    align-items:stretch!important;
+    flex-direction:column!important;
+    gap:10px!important;
+  }
+  #modal-root .request-utility-actions{
+    padding:0 0 10px!important;
+    border-right:0!important;
+    border-bottom:1px solid #dbe4f0!important;
+  }
+  #modal-root .request-status-actions{justify-content:flex-start!important}
+}
+@media(max-width:700px){
+  #modal-root .request-utility-actions,
+  #modal-root .request-status-actions{
+    width:100%!important;
+    display:grid!important;
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+    gap:8px!important;
+  }
+  #modal-root .request-utility-actions .prototype-action,
+  #modal-root .request-status-actions .prototype-action{
+    width:100%!important;
+    min-width:0!important;
+    white-space:normal!important;
+    text-align:center!important;
+  }
+  #modal-root .request-status-actions>.muted{grid-column:1/-1!important}
+}
