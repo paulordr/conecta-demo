@@ -680,4 +680,4 @@
 .cedent-analysis-panel #cedent-conecta-access-fields .field{width:100%;margin:0;min-width:0}
 .cedent-analysis-panel .field{min-width:0}
 .cedent-analysis-panel .field select,.cedent-analysis-panel .field textarea{width:100%;box-sizing:border-box}
-@media(max-width:760px){.mock-user-switcher{display:none}.cedent-analysis-panel .form-grid{grid-template-columns:1fr}}
+@media(max-width:760px){.mock-user-switcher{display:none}.cedent-analysis-panel .form-grid,.cedent-analysis-panel #cedent-conecta-access-fields{grid-template-columns:1fr}}
