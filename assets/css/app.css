@@ -669,3 +669,12 @@
 #modal-root>.modal-backdrop>.request-detail-modal>.modal-footer.request-detail-toolbar{display:none!important}
 @media(max-width:1050px){#modal-root>.modal-backdrop>.request-detail-modal>.modal-head.request-detail-toolbar{align-items:flex-start!important;flex-direction:column!important;gap:8px!important}#modal-root>.modal-backdrop>.request-detail-modal>.modal-head.request-detail-toolbar .request-footer-stamp{min-width:0!important}#modal-root>.modal-backdrop>.request-detail-modal>.modal-head.request-detail-toolbar .request-footer-actions{width:100%!important;justify-content:flex-end!important;flex-wrap:wrap!important}}
 @media(max-width:700px){#modal-root>.modal-backdrop>.request-detail-modal>.modal-head.request-detail-toolbar{padding:10px!important}#modal-root>.modal-backdrop>.request-detail-modal>.modal-head.request-detail-toolbar .request-footer-actions{justify-content:stretch!important}#modal-root>.modal-backdrop>.request-detail-modal>.modal-head.request-detail-toolbar .prototype-action{flex:1 1 calc(50% - 8px)!important}}
+
+.mock-user-switcher select{max-width:170px}
+.cedent-current-user{display:flex;align-items:center;gap:6px;margin:4px 0 14px;color:#425575;font-size:12px}
+.cedent-current-user .material-symbols-rounded{font-size:18px;color:#2563eb}
+.cedent-current-user strong{color:#172747}
+.cedent-analysis-panel .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:start}
+.cedent-analysis-panel .field{min-width:0}
+.cedent-analysis-panel .field select,.cedent-analysis-panel .field textarea{width:100%;box-sizing:border-box}
+@media(max-width:760px){.mock-user-switcher{display:none}.cedent-analysis-panel .form-grid{grid-template-columns:1fr}}
