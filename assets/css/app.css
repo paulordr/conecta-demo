@@ -806,3 +806,9 @@
 .conecta-analysis-panel textarea{min-height:140px;line-height:1.5}
 .conecta-analysis-panel .cedent-analysis-history{margin-top:18px;padding-top:15px;border-top:1px solid #dce7f5}
 .cedent-history-status .badge{vertical-align:middle}
+
+/* Padroniza os ícones de expansão: evita a seta nativa duplicada do elemento details. */
+details>summary{list-style:none}
+details>summary::-webkit-details-marker{display:none}
+details>summary::marker{content:""}
+details>summary::after{content:none!important;display:none!important}
