@@ -203,6 +203,16 @@ function applyWorkflowAction(action,requestId){
     delivery={method,description};
    }
   }
+  const catalogDataset=data.datasets.find(d=>d.id===r.datasetId);
+  const catalogTechnology=datasetTechnology(catalogDataset);
+  const platformTechnology=delivery.technology||catalogTechnology;
+  const availableInConecta=action==='cedent-approve'
+   ? ['API','Grandes Volumes'].includes(catalogTechnology)
+   : action==='data-available'&&delivery.method==='Disponível no Conecta'&&['API','Grandes Volumes'].includes(platformTechnology);
+  if(availableInConecta){
+   next[0]='Aguardando análise do Conecta';
+   next[1]='Compartilhamento aprovado pelo Cedente. Tecnologia disponível no Conecta; encaminhada para análise técnica do Conecta gov.br.';
+  }
   if(!justification){toast('Preencha a justificativa da análise.','error');$('#request-motivation')?.focus();return}
   const files=Array.from($('#request-attachments')?.files||[]);
   const readFile=file=>new Promise((resolve,reject)=>{const reader=new FileReader();reader.onload=()=>resolve({name:file.name,type:file.type||'Arquivo',size:file.size,sizeLabel:(file.size/1024).toFixed(1)+' KB',dataUrl:reader.result,uploadedByRole:'cedente',uploadedBy:reviewer,uploadedAt:today()});reader.onerror=()=>reject(new Error('Falha ao ler arquivo'));reader.readAsDataURL(file)});
