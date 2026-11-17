@@ -312,6 +312,10 @@
 .cedent-analysis-history-meta span{font-size:11px;color:#425575}
 .cedent-analysis-history-item p,.cedent-analysis-history-files{margin:5px 0;font-size:12px;color:#263751;overflow-wrap:anywhere}
 .cedent-analysis-history-attachments{display:flex;flex-direction:column;gap:7px;margin-top:8px}
+.cedent-analysis-panel [hidden]{display:none!important}
+.cedent-analysis-history-delivery{margin:9px 0;padding:9px 11px;background:#eef5ff;border:1px solid #d7e5f7;border-radius:8px;font-size:12px;color:#263751}
+.cedent-analysis-history-delivery p{margin:5px 0 0}
+
 .cedent-analysis-history-attachment{display:flex;align-items:center;gap:9px;padding:8px 10px;background:#fff;border:1px solid #dce5f0;border-radius:7px;min-width:0}
 .cedent-analysis-history-attachment>.material-symbols-rounded{font-size:19px;color:#45658f;flex:0 0 auto}
 .cedent-analysis-history-attachment>div{display:flex;flex:1;flex-direction:column;gap:3px;min-width:0}
