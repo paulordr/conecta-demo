@@ -1149,3 +1149,7 @@ th{
  #modal-root .request-fill-footer-navigation .btn,
  #modal-root .request-fill-footer-actions .btn{flex:1 1 0!important}
 }
+
+
+/* Etapa inicial da nova solicitação: fechamento somente pelo rodapé */
+#modal-root>.modal-backdrop>.modal:has(.request-flow-intro) .modal-head .modal-close{display:none!important}
