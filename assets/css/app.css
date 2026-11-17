@@ -1153,3 +1153,25 @@ th{
 
 /* Etapa inicial da nova solicitação: fechamento somente pelo rodapé */
 #modal-root>.modal-backdrop>.modal:has(.request-flow-intro) .modal-head .modal-close{display:none!important}
+
+
+/* Rodapé do formulário: espaçamento uniforme entre os botões e grupos de ações */
+#modal-root .modal:has(.request-fill-page) .modal-footer{
+ display:flex!important;
+ align-items:center!important;
+ flex-wrap:wrap!important;
+ column-gap:12px!important;
+ row-gap:10px!important;
+}
+#modal-root .modal:has(.request-fill-page) .request-fill-footer-navigation,
+#modal-root .modal:has(.request-fill-page) .request-fill-footer-actions{
+ display:flex!important;
+ align-items:center!important;
+ gap:10px!important;
+}
+#modal-root .modal:has(.request-fill-page) .request-fill-footer-actions{margin-left:auto!important;}
+@media(max-width:760px){
+ #modal-root .modal:has(.request-fill-page) .modal-footer{gap:8px!important;}
+ #modal-root .modal:has(.request-fill-page) .request-fill-footer-navigation,
+ #modal-root .modal:has(.request-fill-page) .request-fill-footer-actions{gap:8px!important;}
+}
