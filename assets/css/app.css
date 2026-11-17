@@ -681,3 +681,49 @@
 .cedent-analysis-panel .field{min-width:0}
 .cedent-analysis-panel .field select,.cedent-analysis-panel .field textarea{width:100%;box-sizing:border-box}
 @media(max-width:760px){.mock-user-switcher{display:none}.cedent-analysis-panel .form-grid,.cedent-analysis-panel #cedent-conecta-access-fields{grid-template-columns:1fr}}
+
+
+/* Alinhamento consistente dos campos de tecnologia e conjunto de dados */
+#modal-root .cedent-analysis-panel #cedent-conecta-access-fields{
+  display:grid!important;
+  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  column-gap:16px!important;
+  row-gap:0!important;
+  align-items:start!important;
+  width:100%!important;
+  margin:0!important;
+  padding:0!important;
+}
+#modal-root .cedent-analysis-panel #cedent-conecta-access-fields>.field{
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:stretch!important;
+  justify-content:flex-start!important;
+  width:100%!important;
+  min-width:0!important;
+  margin:0 0 14px!important;
+  padding:0!important;
+}
+#modal-root .cedent-analysis-panel #cedent-conecta-access-fields>.field>label{
+  display:block!important;
+  width:100%!important;
+  margin:0 0 6px!important;
+  padding:0!important;
+  text-align:left!important;
+  line-height:1.4!important;
+}
+#modal-root .cedent-analysis-panel #cedent-conecta-access-fields>.field>select{
+  display:block!important;
+  width:100%!important;
+  min-width:0!important;
+  margin:0!important;
+  align-self:stretch!important;
+  box-sizing:border-box!important;
+}
+#modal-root .cedent-analysis-panel #cedent-conecta-access-fields[hidden]{display:none!important}
+@media(max-width:760px){
+  #modal-root .cedent-analysis-panel #cedent-conecta-access-fields{
+    grid-template-columns:minmax(0,1fr)!important;
+    row-gap:0!important;
+  }
+}
