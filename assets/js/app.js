@@ -176,7 +176,26 @@ function applyWorkflowAction(action,requestId){
  const r=data.requests.find(x=>x.id===requestId);if(!r)return;const note=$('#workflow-note')?.value.trim()||'';
  const transitions={'receiver-sign':['Aguardando assinaturas','Solicitação liberada para assinatura dos responsáveis.'],'cedent-start':['Em análise pelo Cedente','Análise iniciada pelo órgão cedente.'],'cedent-approve':['Aprovada pelo Cedente','Solicitação aprovada pelo órgão cedente e encaminhada para análise do Conecta.'],'cedent-reject':['Rejeitada pelo Cedente','Solicitação rejeitada pelo órgão cedente.'],'viability-start':['Em análise de viabilidade','Encaminhada para análise de viabilidade.'],'viability-approve':['Aguardando disponibilização do conjunto de dados','Viabilidade aprovada. Aguardando disponibilização do conjunto de dados.'],'viability-reject':['Rejeitada pelo Cedente','Viabilidade reprovada pelo órgão cedente.'],'data-available':['Deferido','Disponibilização confirmada e compartilhamento aprovado.'],'conecta-start':['Em análise pelo Conecta','Análise iniciada pelo Conecta gov.br.'],'conecta-approve':['Deferido','Solicitação deferida pelo Conecta gov.br.'],'conecta-reject':['Rejeitada pelo Conecta','Solicitação rejeitada pelo Conecta gov.br.']};
  if(action==='sign-dirti'||action==='sign-tech'){const key=action==='sign-dirti'?'dirTi':'respTech';r.signatures=r.signatures||{dirTi:false,respTech:false};r.signatures[key]=true;r.history=r.history||[];r.history.push({status:'Assinatura registrada (simulação)',date:today(),note:(key==='dirTi'?'Dirigente de TI':'Responsável Técnico')+' assinou. Não equivale à assinatura digital oficial.'});if(r.signatures.dirTi&&r.signatures.respTech){r.status='Aguardando análise do Cedente';r.history.push({status:r.status,date:today(),note:'Assinaturas concluídas. Encaminhada ao Cedente.'})}persist();viewRequest(r.id);toast('Assinatura registrada em modo de demonstração.','success');return}
- const next=transitions[action];if(!next)return;if(['cedent-reject','viability-reject','conecta-reject'].includes(action)&&!note){toast('Informe a justificativa para reprovar.','error');return}r.workflowNote=note;workflowHistory(r,next[0],next[1]+(note?' Justificativa: '+note:''));
+ const next=transitions[action];if(!next)return;if(['cedent-reject','viability-reject','conecta-reject'].includes(action)&&!note){toast('Informe a justificativa para reprovar.','error');return}const cedentActions=['cedent-start','cedent-approve','cedent-reject','viability-start','viability-approve','viability-reject','data-available'];
+ if(cedentActions.includes(action)&&currentProfile==='cedente'){
+  const reviewer=$('#request-cedent-reviewer')?.value.trim()||r.cedentReviewer||'Cedente de dados';
+  const justification=$('#request-motivation')?.value.trim()||note||r.cedenteJustification||'';
+  const files=Array.from($('#request-attachments')?.files||[]);
+  const readFile=file=>new Promise((resolve,reject)=>{const reader=new FileReader();reader.onload=()=>resolve({name:file.name,type:file.type||'Arquivo',size:file.size,sizeLabel:(file.size/1024).toFixed(1)+' KB',dataUrl:reader.result,uploadedByRole:'cedente',uploadedBy:reviewer,uploadedAt:today()});reader.onerror=()=>reject(new Error('Falha ao ler arquivo'));reader.readAsDataURL(file)});
+  Promise.all(files.map(readFile)).then(newFiles=>{
+   r.attachments=Array.isArray(r.attachments)?r.attachments:[];
+   r.attachments.push(...newFiles);
+   r.cedentReviewer=reviewer;r.cedenteJustification=justification;r.cedentReviewDate=today();
+   r.cedentAnalysisHistory=Array.isArray(r.cedentAnalysisHistory)?r.cedentAnalysisHistory:[];
+   r.cedentAnalysisHistory.push({action,status:next[0],responsible:reviewer,date:today(),justification,attachments:newFiles.map(f=>({name:f.name,type:f.type,size:f.size,sizeLabel:f.sizeLabel,dataUrl:f.dataUrl,uploadedBy:f.uploadedBy,uploadedAt:f.uploadedAt}))});
+   r.history=Array.isArray(r.history)?r.history:[];
+   r.history.push({status:'Análise do Cedente registrada',date:today(),note:'Responsável: '+reviewer+' · Justificativa: '+(justification||'Não informada')+' · Documentos anexados nesta etapa: '+(newFiles.length?newFiles.map(f=>f.name).join(', '):'Nenhum')});
+   r.workflowNote=note;
+   workflowHistory(r,next[0],next[1]+(justification?' Justificativa: '+justification:'')+(newFiles.length?' · '+newFiles.length+' documento(s) anexado(s)':''));
+  }).catch(()=>toast('Não foi possível salvar os documentos da análise. Tente novamente.','error'));
+  return;
+ }
+ r.workflowNote=note;workflowHistory(r,next[0],next[1]+(note?' Justificativa: '+note:''));
 }
  function viewRequest(id){
   const r=data.requests.find(x=>x.id===id);if(!r)return;
