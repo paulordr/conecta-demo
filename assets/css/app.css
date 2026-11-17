@@ -767,3 +767,15 @@
   text-align:center!important;
   font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;
 }
+
+
+/* Etapas interativas do acompanhamento de integração */
+.prototype-next ol{list-style:none;padding:0;margin:14px 0}
+.prototype-next li{display:flex;align-items:flex-start;gap:9px;padding:8px 0;font-size:13px;font-weight:650}
+.prototype-next li .integration-step-check{display:inline-flex;align-items:center;justify-content:center;flex:0 0 20px;width:20px;height:20px;border:1px solid #aabbd2;border-radius:50%;font-size:11px;color:#52647b}
+.prototype-next li.is-complete>span:last-child{text-decoration:line-through;color:#758398}
+.prototype-next li.is-complete .integration-step-check{background:#e5f5eb;border-color:#168452;color:#168452}
+.prototype-next li.is-complete .integration-step-check .material-symbols-rounded{font-size:15px}
+.prototype-next #generate-conecta-credential{width:100%;margin-top:8px}
+.prototype-next #generate-conecta-credential:disabled{opacity:.5;cursor:not-allowed}
+.prototype-next .integration-credential-done{font-size:12px;color:#168452;font-weight:650;margin:4px 0 8px}
