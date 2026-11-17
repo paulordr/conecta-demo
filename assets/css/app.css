@@ -779,3 +779,30 @@
 .prototype-next #generate-conecta-credential{width:100%;margin-top:8px}
 .prototype-next #generate-conecta-credential:disabled{opacity:.5;cursor:not-allowed}
 .prototype-next .integration-credential-done{font-size:12px;color:#168452;font-weight:650;margin:4px 0 8px}
+
+
+/* Padronização visual da busca e da tabela de solicitações */
+.request-filter-panel{padding:14px 15px}
+.request-search-row{gap:10px}
+.request-searchbox{min-height:42px;background:#fff}
+.request-searchbox .search-input{min-height:40px;font-size:12px}
+.request-search-row>.btn{min-height:42px;padding:0 16px;border-radius:10px;white-space:nowrap}
+.request-results-caption{padding:16px 2px 10px;font-size:12px}
+.request-table-wrap{border-radius:0 0 10px 10px}
+.request-table-wrap table{min-width:850px;border-collapse:separate;border-spacing:0}
+.request-table-wrap thead th{padding:13px 16px;background:#f5f8fc;color:#667b99;font-size:11px;font-weight:750;letter-spacing:0;text-align:left;vertical-align:middle}
+.request-table-wrap thead th:first-child{border-radius:8px 0 0 0}
+.request-table-wrap thead th:last-child{border-radius:0 8px 0 0}
+.request-sort-button{appearance:none;-webkit-appearance:none;display:inline-flex;align-items:center;gap:6px;padding:4px 0;border:0;border-radius:0;background:transparent;color:#667b99;font:inherit;font-size:11px;font-weight:750;letter-spacing:0;text-align:left;cursor:pointer}
+.request-sort-button:hover,.request-sort-button:focus-visible{color:#0756df;text-decoration:underline;outline:none}
+.request-table-wrap tbody td{padding:14px 16px}
+.request-table-wrap tbody tr{background:#fff}
+.request-table-wrap tbody tr:hover{background:#f8fbff}
+
+/* Formulário de análise do Conecta reaproveita a identidade visual do Cedente */
+.conecta-analysis-panel .cedent-analysis-head{margin-bottom:13px}
+.conecta-analysis-panel .field input:not([type=file]){width:100%;min-height:42px;padding:9px 11px;border:1px solid #d1dbe8;border-radius:8px;background:#fff;color:var(--ink);font-size:12px}
+.conecta-analysis-panel .field input[type=file]{min-height:42px;padding:8px;background:#fff}
+.conecta-analysis-panel textarea{min-height:140px;line-height:1.5}
+.conecta-analysis-panel .cedent-analysis-history{margin-top:18px;padding-top:15px;border-top:1px solid #dce7f5}
+.cedent-history-status .badge{vertical-align:middle}
