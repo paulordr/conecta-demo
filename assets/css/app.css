@@ -303,6 +303,18 @@
 .prototype-analysis-body>label,.prototype-analysis-body>.prototype-justification{grid-column:1/-1}
 .prototype-analysis-body>label{font-size:13px;font-weight:800}
 .prototype-justification{margin:0;padding:10px 12px;background:#f3f6fc;border:1px solid #d7e1ef;border-radius:9px;font-size:12px;font-style:italic}
+.cedent-analysis-history{margin-top:18px;padding-top:14px;border-top:1px solid #dce5f0}
+.cedent-analysis-history h3,.cedent-analysis-history h4{margin:0 0 10px;font-size:13px;color:#111d3b}
+.cedent-analysis-history-list{display:flex;flex-direction:column;gap:10px}
+.cedent-analysis-history-item{padding:12px;background:#f8faff;border:1px solid #dce5f0;border-radius:9px}
+.cedent-analysis-history-meta{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:8px}
+.cedent-analysis-history-meta strong{font-size:12px;color:#111d3b}
+.cedent-analysis-history-meta span{font-size:11px;color:#425575}
+.cedent-analysis-history-item p,.cedent-analysis-history-files{margin:5px 0;font-size:12px;color:#263751;overflow-wrap:anywhere}
+.cedent-analysis-history-item p strong,.cedent-analysis-history-files strong{color:#111d3b}
+.prototype-analysis-body .cedent-analysis-history{grid-column:1/-1}
+@media(max-width:700px){.cedent-analysis-history-meta{gap:6px}.prototype-analysis-body .cedent-analysis-history{grid-column:1/-1}}
+
 .prototype-history-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;padding:14px 16px}
 .prototype-history-grid>div+div{border-left:1px solid #dce5f0;padding-left:16px}
 .prototype-history-grid strong{font-size:13px;color:#101b3b}
