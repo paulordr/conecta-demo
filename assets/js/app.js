@@ -183,10 +183,11 @@ function applyWorkflowAction(action,requestId){
  const r=data.requests.find(x=>x.id===requestId);if(!r)return;const note=$('#workflow-note')?.value.trim()||'';
  const transitions={'receiver-sign':['Aguardando assinaturas','Solicitação liberada para assinatura dos responsáveis.'],'cedent-start':['Em análise pelo Cedente','Análise iniciada pelo órgão cedente.'],'cedent-approve':['Aprovada pelo Cedente','Solicitação aprovada pelo órgão cedente e encaminhada para análise do Conecta.'],'cedent-reject':['Rejeitada pelo Cedente','Solicitação rejeitada pelo órgão cedente.'],'viability-start':['Em análise de viabilidade','Encaminhada para análise de viabilidade.'],'viability-approve':['Aguardando disponibilização do conjunto de dados','Viabilidade aprovada. Aguardando disponibilização do conjunto de dados.'],'viability-reject':['Rejeitada pelo Cedente','Viabilidade reprovada pelo órgão cedente.'],'data-available':['Deferido','Disponibilização confirmada e compartilhamento aprovado.'],'conecta-start':['Em análise pelo Conecta','Análise iniciada pelo Conecta gov.br.'],'conecta-approve':['Deferido','Solicitação deferida pelo Conecta gov.br.'],'conecta-reject':['Rejeitada pelo Conecta','Solicitação rejeitada pelo Conecta gov.br.']};
  if(action==='sign-dirti'||action==='sign-tech'){const key=action==='sign-dirti'?'dirTi':'respTech';r.signatures=r.signatures||{dirTi:false,respTech:false};r.signatures[key]=true;r.history=r.history||[];r.history.push({status:'Assinatura registrada (simulação)',date:today(),note:(key==='dirTi'?'Dirigente de TI':'Responsável Técnico')+' assinou. Não equivale à assinatura digital oficial.'});if(r.signatures.dirTi&&r.signatures.respTech){r.status='Aguardando análise do Cedente';r.history.push({status:r.status,date:today(),note:'Assinaturas concluídas. Encaminhada ao Cedente.'})}persist();viewRequest(r.id);toast('Assinatura registrada em modo de demonstração.','success');return}
- const next=transitions[action];if(!next)return;if(['cedent-reject','viability-reject','conecta-reject'].includes(action)&&!note){toast('Informe a justificativa para reprovar.','error');return}const cedentActions=['cedent-start','cedent-approve','cedent-reject','viability-start','viability-approve','viability-reject','data-available'];
+ const next=transitions[action];if(!next)return;const cedentActions=['cedent-start','cedent-approve','cedent-reject','viability-start','viability-approve','viability-reject','data-available'];
  if(cedentActions.includes(action)&&currentProfile==='cedente'){
   const reviewer=currentUser()?.name||'';
   const justification=$('#request-motivation')?.value.trim()||'';
+  if(['cedent-reject','viability-reject'].includes(action)&&!justification){toast('Informe a justificativa para reprovar.','error');$('#request-motivation')?.focus();return}
   let delivery={};
   if(action==='data-available'){
    const method=$('#cedent-delivery-method')?.value||'';
@@ -206,9 +207,10 @@ function applyWorkflowAction(action,requestId){
   const catalogDataset=data.datasets.find(d=>d.id===r.datasetId);
   const catalogTechnology=datasetTechnology(catalogDataset);
   const platformTechnology=delivery.technology||catalogTechnology;
-  const availableInConecta=action==='cedent-approve'
-   ? !!catalogDataset&&['API','Grandes Volumes'].includes(catalogTechnology)
-   : action==='data-available'&&delivery.method==='Disponível no Conecta'&&['API','Grandes Volumes'].includes(platformTechnology);
+  const normalizedTechnology=String(platformTechnology||'').trim().toLocaleLowerCase('pt-BR').normalize('NFD').replace(/[\\u0300-\\u036f]/g,'');
+  const isAvailableTechnology=normalizedTechnology==='api'||normalizedTechnology.includes('grandes volumes')||normalizedTechnology.includes('grande volume');
+  const availableInConecta=(action==='cedent-approve'&&!!catalogDataset&&isAvailableTechnology)
+   ||(action==='data-available'&&delivery.method==='Disponível no Conecta'&&isAvailableTechnology);
   if(availableInConecta){
    next[0]='Aguardando análise do Conecta';
    next[1]='Compartilhamento aprovado pelo Cedente. Tecnologia disponível no Conecta; encaminhada para análise técnica do Conecta gov.br.';
@@ -229,6 +231,7 @@ function applyWorkflowAction(action,requestId){
   }).catch(()=>toast('Não foi possível salvar os documentos da análise. Tente novamente.','error'));
   return;
  }
+ if(['cedent-reject','viability-reject','conecta-reject'].includes(action)&&!note){toast('Informe a justificativa para reprovar.','error');$('#workflow-note')?.focus();return}
  r.workflowNote=note;workflowHistory(r,next[0],next[1]+(note?' Justificativa: '+note:''));
 }
  function viewRequest(id){
